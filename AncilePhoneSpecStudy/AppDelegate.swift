@@ -7,15 +7,86 @@
 //
 
 import UIKit
+import OhmageOMHSDK
+import ResearchSuiteTaskBuilder
+import ResearchSuiteResultsProcessor
+import ResearchSuiteAppFramework
+import Gloss
+import sdlrkx
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var ancileClient: AncileStudyServerClient!
+    
+    var store: ANCStore!
+    var ohmageManager: OhmageOMHManager!
+    var taskBuilder: RSTBTaskBuilder!
+    var resultsProcessor: RSRPResultsProcessor!
+    var activityManager: ANCActivityManager!
+    
+    func initializeOhmage(credentialsStore: OhmageOMHSDKCredentialStore) -> OhmageOMHManager {
+        
+        //load OMH client application credentials from OMHClient.plist
+        guard let file = Bundle.main.path(forResource: "OMHClient", ofType: "plist") else {
+            fatalError("Could not initialze OhmageManager")
+        }
+        
+        
+        let omhClientDetails = NSDictionary(contentsOfFile: file)
+        
+        guard let baseURL = omhClientDetails?["OMHBaseURL"] as? String,
+            let clientID = omhClientDetails?["OMHClientID"] as? String,
+            let clientSecret = omhClientDetails?["OMHClientSecret"] as? String else {
+                fatalError("Could not initialze OhmageManager")
+        }
+        
+        if let ohmageManager = OhmageOMHManager(baseURL: baseURL,
+                                                clientID: clientID,
+                                                clientSecret: clientSecret,
+                                                queueStorageDirectory: "ohmageSDK",
+                                                store: credentialsStore) {
+            return ohmageManager
+        }
+        else {
+            fatalError("Could not initialze OhmageManager")
+        }
+        
+    }
+    
+    
+    static var appDelegate: AppDelegate! {
+        return UIApplication.shared.delegate! as! AppDelegate
+    }
+    
+    func getQueryStringParameter(url: String, param: String) -> String? {
+        guard let url = URLComponents(string: url) else { return nil }
+        return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.ancileClient = AncileStudyServerClient(baseURL: "https://ancile.cornelltech.io")
+//        self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
+        
+        self.store = ANCStore()
+        
+        self.taskBuilder = RSTBTaskBuilder(
+            stateHelper: self.store,
+            elementGeneratorServices: AppDelegate.elementGeneratorServices,
+            stepGeneratorServices: AppDelegate.stepGeneratorServices,
+            answerFormatGeneratorServices: AppDelegate.answerFormatGeneratorServices
+        )
+        
+//        self.resultsProcessor = RSRPResultsProcessor(
+//            frontEndTransformers: AppDelegate.resultsTransformers,
+//            backEnd: ORBEManager(ohmageManager: self.ohmageManager)
+//        )
+        
+        self.activityManager = ANCActivityManager(activityFilename: "activities", taskBuilder: self.taskBuilder)
+        
         return true
     }
 
@@ -39,6 +110,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let code = self.getQueryStringParameter(url: url.absoluteString, param: "code") {
+            self.ancileClient.signIn(code: code) { (signInResponse, error) in
+                
+                debugPrint(signInResponse)
+                if let err = error {
+                    debugPrint(err)
+                    return
+                }
+                
+                if let response = signInResponse {
+                    self.store.set(value: response.authToken as NSSecureCoding, key: ANCStore.kAncileAuthToken)
+                }
+//
+//                self.reachabilityManager.startListening()
+//                self.oauthCompletion?(nil)
+                
+            }
+        }
+        
+        return true
+    }
+    
+    
+    open class var stepGeneratorServices: [RSTBStepGenerator] {
+        return [
+            CTFOhmageLoginStepGenerator(),
+            CTFDelayDiscountingStepGenerator(),
+            CTFBARTStepGenerator(),
+            RSTBInstructionStepGenerator(),
+            RSTBTextFieldStepGenerator(),
+            RSTBIntegerStepGenerator(),
+            RSTBDecimalStepGenerator(),
+            RSTBTimePickerStepGenerator(),
+            RSTBFormStepGenerator(),
+            RSTBDatePickerStepGenerator(),
+            RSTBSingleChoiceStepGenerator(),
+            RSTBMultipleChoiceStepGenerator(),
+            RSTBBooleanStepGenerator(),
+            RSTBPasscodeStepGenerator(),
+            RSTBScaleStepGenerator(),
+            YADLFullStepGenerator(),
+            YADLSpotStepGenerator()
+        ]
+    }
+    
+    open class var answerFormatGeneratorServices:  [RSTBAnswerFormatGenerator] {
+        return [
+            RSTBTextFieldStepGenerator(),
+            RSTBIntegerStepGenerator(),
+            RSTBDecimalStepGenerator(),
+            RSTBTimePickerStepGenerator(),
+            RSTBDatePickerStepGenerator(),
+            RSTBBooleanStepGenerator(),
+            RSTBScaleStepGenerator()
+        ]
+    }
+    
+    open class var elementGeneratorServices: [RSTBElementGenerator] {
+        return [
+            RSTBElementListGenerator(),
+            RSTBElementFileGenerator(),
+            RSTBElementSelectorGenerator()
+        ]
+    }
+    
+    open class var resultsTransformers: [RSRPFrontEndTransformer.Type] {
+        return [
+            CTFBARTSummaryResultsTransformer.self,
+            CTFDelayDiscountingRawResultsTransformer.self,
+            YADLSpotRaw.self,
+            YADLFullRaw.self
+        ]
     }
 
 

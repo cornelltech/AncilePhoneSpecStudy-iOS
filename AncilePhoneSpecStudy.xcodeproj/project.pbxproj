@@ -7,13 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19E501DCED0F887B1CC37F59 /* Pods_AncilePhoneSpecStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2ACA5D576D528FBA9FC2010F /* Pods_AncilePhoneSpecStudy.framework */; };
+		3FEE24515FAD0341AF960F44 /* Pods_AncilePhoneSpecStudyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB10B2C22501A23E4A3A29C /* Pods_AncilePhoneSpecStudyTests.framework */; };
+		A5B06680B13076C224C10007 /* Pods_AncilePhoneSpecStudyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7CDE23C7A4BDD412C0C05A /* Pods_AncilePhoneSpecStudyUITests.framework */; };
+		E21D116A1F1409F200351E7A /* ANCOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */; };
+		E21D116C1F140ED400351E7A /* ANCStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D116B1F140ED400351E7A /* ANCStore.swift */; };
 		E21FE5871EFC092C006F6B60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5861EFC092C006F6B60 /* AppDelegate.swift */; };
-		E21FE5891EFC092C006F6B60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5881EFC092C006F6B60 /* ViewController.swift */; };
 		E21FE58C1EFC092C006F6B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21FE58A1EFC092C006F6B60 /* Main.storyboard */; };
 		E21FE58E1EFC092C006F6B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21FE58D1EFC092C006F6B60 /* Assets.xcassets */; };
 		E21FE5911EFC092C006F6B60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21FE58F1EFC092C006F6B60 /* LaunchScreen.storyboard */; };
 		E21FE59C1EFC092C006F6B60 /* AncilePhoneSpecStudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE59B1EFC092C006F6B60 /* AncilePhoneSpecStudyTests.swift */; };
 		E21FE5A71EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */; };
+		E21FE5C41EFC6424006F6B60 /* AncileStudyServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5C31EFC6424006F6B60 /* AncileStudyServerClient.swift */; };
+		E21FE5C61EFC652F006F6B60 /* AncileStudyServerClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5C51EFC652F006F6B60 /* AncileStudyServerClientError.swift */; };
+		E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */; };
+		E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */; };
+		E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */; };
+		E2E4107D1F14224900FF8FA6 /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E4107C1F14224900FF8FA6 /* activities.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		149273CE174464E91C93E26E /* Pods-AncilePhoneSpecStudyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudyTests/Pods-AncilePhoneSpecStudyTests.release.xcconfig"; sourceTree = "<group>"; };
+		2ACA5D576D528FBA9FC2010F /* Pods_AncilePhoneSpecStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AncilePhoneSpecStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		400DD93F8D82B594BB6E9517 /* Pods-AncilePhoneSpecStudyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudyUITests/Pods-AncilePhoneSpecStudyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		41AC4D14EDD22B557FBD09F1 /* Pods-AncilePhoneSpecStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudy.release.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudy/Pods-AncilePhoneSpecStudy.release.xcconfig"; sourceTree = "<group>"; };
+		42B15E87BDF566A58FA0316D /* Pods-AncilePhoneSpecStudyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudyUITests/Pods-AncilePhoneSpecStudyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		770F35B3F56DD7297CCA709C /* Pods-AncilePhoneSpecStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudy/Pods-AncilePhoneSpecStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		7D7CDE23C7A4BDD412C0C05A /* Pods_AncilePhoneSpecStudyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AncilePhoneSpecStudyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5886542AB2E1B4946F8FAAC /* Pods-AncilePhoneSpecStudyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudyTests/Pods-AncilePhoneSpecStudyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOnboardingViewController.swift; sourceTree = "<group>"; };
+		E21D116B1F140ED400351E7A /* ANCStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCStore.swift; sourceTree = "<group>"; };
 		E21FE5831EFC092C006F6B60 /* AncilePhoneSpecStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncilePhoneSpecStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21FE5861EFC092C006F6B60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E21FE5881EFC092C006F6B60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E21FE58B1EFC092C006F6B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E21FE58D1EFC092C006F6B60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E21FE5901EFC092C006F6B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +66,13 @@
 		E21FE5A21EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AncilePhoneSpecStudyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AncilePhoneSpecStudyUITests.swift; sourceTree = "<group>"; };
 		E21FE5A81EFC092C006F6B60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E21FE5C31EFC6424006F6B60 /* AncileStudyServerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AncileStudyServerClient.swift; sourceTree = "<group>"; };
+		E21FE5C51EFC652F006F6B60 /* AncileStudyServerClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AncileStudyServerClientError.swift; sourceTree = "<group>"; };
+		E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivityManager.swift; sourceTree = "<group>"; };
+		E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivity.swift; sourceTree = "<group>"; };
+		E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTestViewController.swift; sourceTree = "<group>"; };
+		E2E4107C1F14224900FF8FA6 /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activities.json; path = config/json/activities.json; sourceTree = "<group>"; };
+		FFB10B2C22501A23E4A3A29C /* Pods_AncilePhoneSpecStudyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AncilePhoneSpecStudyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19E501DCED0F887B1CC37F59 /* Pods_AncilePhoneSpecStudy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEE24515FAD0341AF960F44 /* Pods_AncilePhoneSpecStudyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +96,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5B06680B13076C224C10007 /* Pods_AncilePhoneSpecStudyUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7BA437B44D1633EA22258559 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2ACA5D576D528FBA9FC2010F /* Pods_AncilePhoneSpecStudy.framework */,
+				FFB10B2C22501A23E4A3A29C /* Pods_AncilePhoneSpecStudyTests.framework */,
+				7D7CDE23C7A4BDD412C0C05A /* Pods_AncilePhoneSpecStudyUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E21FE57A1EFC092C006F6B60 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +120,8 @@
 				E21FE59A1EFC092C006F6B60 /* AncilePhoneSpecStudyTests */,
 				E21FE5A51EFC092C006F6B60 /* AncilePhoneSpecStudyUITests */,
 				E21FE5841EFC092C006F6B60 /* Products */,
+				EB857CD83C71DED3D402D425 /* Pods */,
+				7BA437B44D1633EA22258559 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +138,15 @@
 		E21FE5851EFC092C006F6B60 /* AncilePhoneSpecStudy */ = {
 			isa = PBXGroup;
 			children = (
+				E2E4107A1F14221E00FF8FA6 /* config */,
 				E21FE5861EFC092C006F6B60 /* AppDelegate.swift */,
-				E21FE5881EFC092C006F6B60 /* ViewController.swift */,
+				E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */,
+				E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */,
+				E21D116B1F140ED400351E7A /* ANCStore.swift */,
+				E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */,
+				E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */,
+				E21FE5C31EFC6424006F6B60 /* AncileStudyServerClient.swift */,
+				E21FE5C51EFC652F006F6B60 /* AncileStudyServerClientError.swift */,
 				E21FE58A1EFC092C006F6B60 /* Main.storyboard */,
 				E21FE58D1EFC092C006F6B60 /* Assets.xcassets */,
 				E21FE58F1EFC092C006F6B60 /* LaunchScreen.storyboard */,
@@ -125,6 +173,35 @@
 			path = AncilePhoneSpecStudyUITests;
 			sourceTree = "<group>";
 		};
+		E2E4107A1F14221E00FF8FA6 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				E2E4107B1F14222200FF8FA6 /* json */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		E2E4107B1F14222200FF8FA6 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				E2E4107C1F14224900FF8FA6 /* activities.json */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
+		EB857CD83C71DED3D402D425 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				770F35B3F56DD7297CCA709C /* Pods-AncilePhoneSpecStudy.debug.xcconfig */,
+				41AC4D14EDD22B557FBD09F1 /* Pods-AncilePhoneSpecStudy.release.xcconfig */,
+				A5886542AB2E1B4946F8FAAC /* Pods-AncilePhoneSpecStudyTests.debug.xcconfig */,
+				149273CE174464E91C93E26E /* Pods-AncilePhoneSpecStudyTests.release.xcconfig */,
+				42B15E87BDF566A58FA0316D /* Pods-AncilePhoneSpecStudyUITests.debug.xcconfig */,
+				400DD93F8D82B594BB6E9517 /* Pods-AncilePhoneSpecStudyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E21FE5AB1EFC092C006F6B60 /* Build configuration list for PBXNativeTarget "AncilePhoneSpecStudy" */;
 			buildPhases = (
+				8D82A17C63CA7ADCA2EF016D /* [CP] Check Pods Manifest.lock */,
 				E21FE57F1EFC092C006F6B60 /* Sources */,
 				E21FE5801EFC092C006F6B60 /* Frameworks */,
 				E21FE5811EFC092C006F6B60 /* Resources */,
+				C22AA4BE1C05221A6A44A7BD /* [CP] Embed Pods Frameworks */,
+				FBA383DEFE0DC1CCB984B480 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +229,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E21FE5AE1EFC092C006F6B60 /* Build configuration list for PBXNativeTarget "AncilePhoneSpecStudyTests" */;
 			buildPhases = (
+				4EB914702C7D9B785DAE0642 /* [CP] Check Pods Manifest.lock */,
 				E21FE5931EFC092C006F6B60 /* Sources */,
 				E21FE5941EFC092C006F6B60 /* Frameworks */,
 				E21FE5951EFC092C006F6B60 /* Resources */,
+				D1B09D3DE0CABD3C393D9179 /* [CP] Embed Pods Frameworks */,
+				119DD94400A7A03DF39F446F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +250,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E21FE5B11EFC092C006F6B60 /* Build configuration list for PBXNativeTarget "AncilePhoneSpecStudyUITests" */;
 			buildPhases = (
+				5D0F49A26DE17DA37C640E46 /* [CP] Check Pods Manifest.lock */,
 				E21FE59E1EFC092C006F6B60 /* Sources */,
 				E21FE59F1EFC092C006F6B60 /* Frameworks */,
 				E21FE5A01EFC092C006F6B60 /* Resources */,
+				000F3A3F35E0A8F054BC0020 /* [CP] Embed Pods Frameworks */,
+				D7F00F1580C94DCB35B89C42 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,6 +321,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2E4107D1F14224900FF8FA6 /* activities.json in Resources */,
 				E21FE5911EFC092C006F6B60 /* LaunchScreen.storyboard in Resources */,
 				E21FE58E1EFC092C006F6B60 /* Assets.xcassets in Resources */,
 				E21FE58C1EFC092C006F6B60 /* Main.storyboard in Resources */,
@@ -257,13 +344,157 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		000F3A3F35E0A8F054BC0020 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncilePhoneSpecStudyUITests/Pods-AncilePhoneSpecStudyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		119DD94400A7A03DF39F446F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncilePhoneSpecStudyTests/Pods-AncilePhoneSpecStudyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4EB914702C7D9B785DAE0642 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5D0F49A26DE17DA37C640E46 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8D82A17C63CA7ADCA2EF016D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C22AA4BE1C05221A6A44A7BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncilePhoneSpecStudy/Pods-AncilePhoneSpecStudy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1B09D3DE0CABD3C393D9179 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncilePhoneSpecStudyTests/Pods-AncilePhoneSpecStudyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7F00F1580C94DCB35B89C42 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncilePhoneSpecStudyUITests/Pods-AncilePhoneSpecStudyUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBA383DEFE0DC1CCB984B480 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AncilePhoneSpecStudy/Pods-AncilePhoneSpecStudy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E21FE57F1EFC092C006F6B60 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E21FE5891EFC092C006F6B60 /* ViewController.swift in Sources */,
+				E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */,
+				E21FE5C41EFC6424006F6B60 /* AncileStudyServerClient.swift in Sources */,
+				E21D116C1F140ED400351E7A /* ANCStore.swift in Sources */,
+				E21FE5C61EFC652F006F6B60 /* AncileStudyServerClientError.swift in Sources */,
+				E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */,
+				E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */,
 				E21FE5871EFC092C006F6B60 /* AppDelegate.swift in Sources */,
+				E21D116A1F1409F200351E7A /* ANCOnboardingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +644,7 @@
 		};
 		E21FE5AC1EFC092C006F6B60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 770F35B3F56DD7297CCA709C /* Pods-AncilePhoneSpecStudy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AA753846B2;
@@ -426,6 +658,7 @@
 		};
 		E21FE5AD1EFC092C006F6B60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41AC4D14EDD22B557FBD09F1 /* Pods-AncilePhoneSpecStudy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AA753846B2;
@@ -439,6 +672,7 @@
 		};
 		E21FE5AF1EFC092C006F6B60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5886542AB2E1B4946F8FAAC /* Pods-AncilePhoneSpecStudyTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -454,6 +688,7 @@
 		};
 		E21FE5B01EFC092C006F6B60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 149273CE174464E91C93E26E /* Pods-AncilePhoneSpecStudyTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -469,6 +704,7 @@
 		};
 		E21FE5B21EFC092C006F6B60 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42B15E87BDF566A58FA0316D /* Pods-AncilePhoneSpecStudyUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = AA753846B2;
@@ -483,6 +719,7 @@
 		};
 		E21FE5B31EFC092C006F6B60 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 400DD93F8D82B594BB6E9517 /* Pods-AncilePhoneSpecStudyUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = AA753846B2;
@@ -514,6 +751,7 @@
 				E21FE5AD1EFC092C006F6B60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E21FE5AE1EFC092C006F6B60 /* Build configuration list for PBXNativeTarget "AncilePhoneSpecStudyTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +760,7 @@
 				E21FE5B01EFC092C006F6B60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E21FE5B11EFC092C006F6B60 /* Build configuration list for PBXNativeTarget "AncilePhoneSpecStudyUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +769,7 @@
 				E21FE5B31EFC092C006F6B60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

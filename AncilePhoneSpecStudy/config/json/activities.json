@@ -1,0 +1,23 @@
+{
+  "activities": [
+    {
+      "identifier": "eligibility",
+      "type": "activity",
+      "element": {
+        "identifier": "eligibility",
+        "type": "form",
+        "items": [
+          {
+            "identifier": "header",
+            "type": "sectionTitle",
+            "title": "Are you 18 or older?"
+          },
+          {
+            "identifier": "age",
+            "type": "boolean"
+          }
+        ]
+      }
+    }
+  ]
+}
