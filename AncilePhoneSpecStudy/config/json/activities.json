@@ -18,6 +18,33 @@
           }
         ]
       }
+    },
+    {
+      "identifier": "authFlow",
+      "type": "activity",
+      "element": {
+        "identifier": "authFlow",
+        "type": "elementList",
+        "elements": [
+          {
+            "identifier": "ancileAuth",
+            "type": "AncileAuth",
+            "title": "Authenticate with Ancile",
+            "buttonText": "Authenticate"
+          },
+          {
+            "identifier": "coreAuth",
+            "type": "CoreAuth",
+            "title": "Authenticate with Core",
+            "buttonText": "Authenticate"
+          },
+          {
+            "identifier": "ohmageLogin",
+            "type": "OhmageOMHLogin",
+            "title": "Authenticate with Ohmage"
+          }
+        ]
+      }
     }
   ]
 }

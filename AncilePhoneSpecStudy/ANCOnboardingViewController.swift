@@ -38,7 +38,7 @@ open class ANCOnboardingViewController: UIViewController {
             return "eligibility"
         }
     
-        return nil
+        return "authFlow"
     }
     
     func launchActivity() {
@@ -70,6 +70,38 @@ open class ANCOnboardingViewController: UIViewController {
                     if eligible {
                         self?.launchActivity()
                     }
+                })
+                
+            })
+            
+            self.present(tvc, animated: true, completion: nil)
+        }
+        else {
+            guard let task = AppDelegate.appDelegate.activityManager.task(for: "authFlow") else {
+                return
+            }
+            
+            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
+                
+                guard reason == ORKTaskViewControllerFinishReason.completed else {
+                    self?.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
+                let taskResult = taskViewController.result
+                
+//                guard let stepResult = taskResult.result(forIdentifier: "eligibility") as? ORKStepResult,
+//                    let ageResult = stepResult.result(forIdentifier: "age") as? ORKBooleanQuestionResult,
+//                    let eligible = ageResult.booleanAnswer?.boolValue else {
+//                        self?.dismiss(animated: true, completion: nil)
+//                        return
+//                }
+//                
+//                self?.eligible = eligible
+                self?.dismiss(animated: true, completion: {
+//                    if eligible {
+//                        self?.launchActivity()
+//                    }
                 })
                 
             })

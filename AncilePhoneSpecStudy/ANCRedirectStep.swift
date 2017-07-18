@@ -38,7 +38,7 @@ open class ANCRedirectStep: ORKStep {
     
     override open func instantiateStepViewController(with result: ORKResult) -> ORKStepViewController {
         
-        let storyboard = UIStoryboard(name: "Onboarding", bundle: Bundle(for: ANCRedirectStep.self))
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: ANCRedirectStep.self))
         let vc = storyboard.instantiateViewController(withIdentifier: "ANCRedirectStepViewController") as! ANCRedirectStepViewController
         
         vc.configure(with: self, result: result)

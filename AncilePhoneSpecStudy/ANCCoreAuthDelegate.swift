@@ -43,7 +43,12 @@ public class ANCCoreAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLD
             if let urlString = urlString,
                 let url: URL = URL(string: urlString) {
                 ANCOpenURLManager.safeOpenURL(url: url)
+                return
             }
+            else {
+                self.authCompletion?(nil)
+            }
+            
         }
     }
     

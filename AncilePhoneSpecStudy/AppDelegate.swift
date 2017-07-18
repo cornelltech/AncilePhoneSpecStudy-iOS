@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var taskBuilder: RSTBTaskBuilder!
     var resultsProcessor: RSRPResultsProcessor!
     var activityManager: ANCActivityManager!
+    var openURLManager: ANCOpenURLManager!
     
     func initializeOhmage(credentialsStore: OhmageOMHSDKCredentialStore) -> OhmageOMHManager {
         
@@ -75,6 +76,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             baseURL: "https://ancile.cornelltech.io",
             store: self.store
         )
+        
+        self.openURLManager = ANCOpenURLManager(openURLDelegates: [
+            self.ancileClient.ancileAuthDelegate,
+            self.ancileClient.coreAuthDelegate
+        ])
+        
 //        self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
         
         
@@ -121,31 +128,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
         debugPrint(url)
-        //ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/confirm_core_auth?success=true#
-//        ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/callback?code={CODE}
-        
-        if let code = self.getQueryStringParameter(url: url.absoluteString, param: "code") {
-            self.ancileClient.signIn(code: code) { (signInResponse, error) in
-                
-                debugPrint(signInResponse)
-                if let err = error {
-                    debugPrint(err)
-                    return
-                }
-                
-                if let response = signInResponse {
-                    self.store.set(value: response.authToken as NSSecureCoding, key: ANCStore.kAncileAuthToken)
-                }
-//
-//                self.reachabilityManager.startListening()
-//                self.oauthCompletion?(nil)
-                
-            }
-        }
-        
-        return true
+        return self.openURLManager.handleURL(url: url)
     }
     
     
@@ -167,7 +151,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             RSTBPasscodeStepGenerator(),
             RSTBScaleStepGenerator(),
             YADLFullStepGenerator(),
-            YADLSpotStepGenerator()
+            YADLSpotStepGenerator(),
+            ANCAncileAuthStepGenerator(),
+            ANCCoreAuthStepGenerator()
         ]
     }
     

@@ -29,7 +29,11 @@ public class ANCAncileAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenUR
     public func beginRedirect(completion: @escaping ((Error?) -> ())) {
         if let url = self.client.authURL {
             self.authCompletion = completion
-            
+            ANCOpenURLManager.safeOpenURL(url: url)
+            return
+        }
+        else {
+            self.authCompletion?(nil)
         }
     }
     
