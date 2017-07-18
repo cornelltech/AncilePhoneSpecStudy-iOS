@@ -9,6 +9,12 @@
 //import UIKit
 import Alamofire
 
+public protocol AncileClientProvider {
+    
+    func getAncileClient() -> AncileStudyServerClient?
+    
+}
+
 open class AncileStudyServerClient: NSObject {
     
     public struct SignInResponse {
@@ -16,15 +22,41 @@ open class AncileStudyServerClient: NSObject {
     }
     
     let baseURL: String
+    let store: ANCStore
     let dispatchQueue: DispatchQueue?
+    public var ancileAuthDelegate: ANCAncileAuthDelegate!
+    public var coreAuthDelegate: ANCCoreAuthDelegate!
     
-    public init(baseURL: String, dispatchQueue: DispatchQueue? = nil) {
+    private var _authToken: String?
+    
+    var authToken: String? {
+        get {
+            return _authToken
+        }
+        set(newToken) {
+            self._authToken = newToken
+            if let token = newToken {
+                self.store.set(value: token as NSSecureCoding, key: ANCStore.kAncileAuthToken)
+            }
+            else {
+                self.store.set(value: nil, key: ANCStore.kAncileAuthToken)
+            }
+            
+        }
+    }
+    
+    public init(baseURL: String, store: ANCStore, dispatchQueue: DispatchQueue? = nil) {
         self.baseURL = baseURL
+        self.store = store
+        self._authToken = store.get(key: ANCStore.kAncileAuthToken) as? String
         self.dispatchQueue = dispatchQueue
         super.init()
+        
+        self.ancileAuthDelegate = ANCAncileAuthDelegate(client: self)
+        self.coreAuthDelegate = ANCCoreAuthDelegate(client: self)
     }
 
-    var authURL: URL? {
+    public var authURL: URL? {
         return URL(string: "\(self.baseURL)/accounts/google/login")
     }
     
@@ -95,7 +127,9 @@ open class AncileStudyServerClient: NSObject {
 
             //fill in with actual server errors
             let signInResponse = SignInResponse(authToken: authToken)
-
+            
+            self.authToken = authToken
+            
             completion(signInResponse, nil)
             
         }

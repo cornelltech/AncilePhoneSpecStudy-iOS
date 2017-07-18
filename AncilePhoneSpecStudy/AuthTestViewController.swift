@@ -30,8 +30,19 @@ class AuthTestViewController: UIViewController {
     }
     
     @IBAction func getStartedTapped(_ sender: Any) {
-        let url: URL = (AppDelegate.appDelegate.ancileClient?.authURL)!
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//        let url: URL = (AppDelegate.appDelegate.ancileClient?.authURL)!
+//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        
+        
+        //Ancile Auth
+        
+        
+        
+        //Core Auth
+        //Ohmage Auth
+        
+        
+        
     }
 
     @IBAction func coreAuthTapped(_ sender: Any) {

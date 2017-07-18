@@ -38,7 +38,6 @@ open class ANCOnboardingViewController: UIViewController {
             return "eligibility"
         }
     
-        
         return nil
     }
     

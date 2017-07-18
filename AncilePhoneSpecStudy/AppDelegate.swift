@@ -62,16 +62,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func getQueryStringParameter(url: String, param: String) -> String? {
         guard let url = URLComponents(string: url) else { return nil }
+        
         return url.queryItems?.first(where: { $0.name == param })?.value
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.ancileClient = AncileStudyServerClient(baseURL: "https://ancile.cornelltech.io")
+        self.store = ANCStore()
+        
+        self.ancileClient = AncileStudyServerClient(
+            baseURL: "https://ancile.cornelltech.io",
+            store: self.store
+        )
 //        self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
         
-        self.store = ANCStore()
+        
         
         self.taskBuilder = RSTBTaskBuilder(
             stateHelper: self.store,
@@ -115,6 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        debugPrint(url)
+        //ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/confirm_core_auth?success=true#
+//        ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/callback?code={CODE}
+        
         if let code = self.getQueryStringParameter(url: url.absoluteString, param: "code") {
             self.ancileClient.signIn(code: code) { (signInResponse, error) in
                 

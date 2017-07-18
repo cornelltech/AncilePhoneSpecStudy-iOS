@@ -20,6 +20,15 @@
 		E21FE5A71EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */; };
 		E21FE5C41EFC6424006F6B60 /* AncileStudyServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5C31EFC6424006F6B60 /* AncileStudyServerClient.swift */; };
 		E21FE5C61EFC652F006F6B60 /* AncileStudyServerClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5C51EFC652F006F6B60 /* AncileStudyServerClientError.swift */; };
+		E22C261E1F1825780060502C /* ANCRedirectStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22C261D1F1825780060502C /* ANCRedirectStepViewController.swift */; };
+		E22C26201F1825970060502C /* ANCRedirectStepDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22C261F1F1825970060502C /* ANCRedirectStepDelegate.swift */; };
+		E22C26221F1829760060502C /* ANCRedirectStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22C26211F1829760060502C /* ANCRedirectStep.swift */; };
+		E24AAB041F1D64E1003C276D /* ANCOpenURLDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB031F1D64E1003C276D /* ANCOpenURLDelegate.swift */; };
+		E24AAB0C1F1D84FD003C276D /* ANCOpenURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */; };
+		E24AAB0E1F1D85AE003C276D /* ANCAncileAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB0D1F1D85AE003C276D /* ANCAncileAuthDelegate.swift */; };
+		E24AAB101F1D9184003C276D /* ANCCoreAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB0F1F1D9184003C276D /* ANCCoreAuthDelegate.swift */; };
+		E24AAB121F1D968D003C276D /* ANCAuthStepGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB111F1D968D003C276D /* ANCAuthStepGenerator.swift */; };
+		E24AAB151F1D9813003C276D /* ANCRedirectStepDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB141F1D9813003C276D /* ANCRedirectStepDescriptor.swift */; };
 		E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */; };
 		E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */; };
 		E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */; };
@@ -68,6 +77,15 @@
 		E21FE5A81EFC092C006F6B60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E21FE5C31EFC6424006F6B60 /* AncileStudyServerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AncileStudyServerClient.swift; sourceTree = "<group>"; };
 		E21FE5C51EFC652F006F6B60 /* AncileStudyServerClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AncileStudyServerClientError.swift; sourceTree = "<group>"; };
+		E22C261D1F1825780060502C /* ANCRedirectStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCRedirectStepViewController.swift; sourceTree = "<group>"; };
+		E22C261F1F1825970060502C /* ANCRedirectStepDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCRedirectStepDelegate.swift; sourceTree = "<group>"; };
+		E22C26211F1829760060502C /* ANCRedirectStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCRedirectStep.swift; sourceTree = "<group>"; };
+		E24AAB031F1D64E1003C276D /* ANCOpenURLDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOpenURLDelegate.swift; sourceTree = "<group>"; };
+		E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOpenURLManager.swift; sourceTree = "<group>"; };
+		E24AAB0D1F1D85AE003C276D /* ANCAncileAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCAncileAuthDelegate.swift; sourceTree = "<group>"; };
+		E24AAB0F1F1D9184003C276D /* ANCCoreAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCCoreAuthDelegate.swift; sourceTree = "<group>"; };
+		E24AAB111F1D968D003C276D /* ANCAuthStepGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCAuthStepGenerator.swift; sourceTree = "<group>"; };
+		E24AAB141F1D9813003C276D /* ANCRedirectStepDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCRedirectStepDescriptor.swift; sourceTree = "<group>"; };
 		E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivityManager.swift; sourceTree = "<group>"; };
 		E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivity.swift; sourceTree = "<group>"; };
 		E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTestViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +165,15 @@
 				E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */,
 				E21FE5C31EFC6424006F6B60 /* AncileStudyServerClient.swift */,
 				E21FE5C51EFC652F006F6B60 /* AncileStudyServerClientError.swift */,
+				E22C26211F1829760060502C /* ANCRedirectStep.swift */,
+				E24AAB0D1F1D85AE003C276D /* ANCAncileAuthDelegate.swift */,
+				E24AAB0F1F1D9184003C276D /* ANCCoreAuthDelegate.swift */,
+				E22C261D1F1825780060502C /* ANCRedirectStepViewController.swift */,
+				E22C261F1F1825970060502C /* ANCRedirectStepDelegate.swift */,
+				E24AAB031F1D64E1003C276D /* ANCOpenURLDelegate.swift */,
+				E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */,
+				E24AAB111F1D968D003C276D /* ANCAuthStepGenerator.swift */,
+				E24AAB141F1D9813003C276D /* ANCRedirectStepDescriptor.swift */,
 				E21FE58A1EFC092C006F6B60 /* Main.storyboard */,
 				E21FE58D1EFC092C006F6B60 /* Assets.xcassets */,
 				E21FE58F1EFC092C006F6B60 /* LaunchScreen.storyboard */,
@@ -490,11 +517,20 @@
 				E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */,
 				E21FE5C41EFC6424006F6B60 /* AncileStudyServerClient.swift in Sources */,
 				E21D116C1F140ED400351E7A /* ANCStore.swift in Sources */,
+				E22C26221F1829760060502C /* ANCRedirectStep.swift in Sources */,
+				E24AAB101F1D9184003C276D /* ANCCoreAuthDelegate.swift in Sources */,
 				E21FE5C61EFC652F006F6B60 /* AncileStudyServerClientError.swift in Sources */,
+				E24AAB041F1D64E1003C276D /* ANCOpenURLDelegate.swift in Sources */,
 				E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */,
 				E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */,
+				E22C261E1F1825780060502C /* ANCRedirectStepViewController.swift in Sources */,
+				E24AAB151F1D9813003C276D /* ANCRedirectStepDescriptor.swift in Sources */,
+				E22C26201F1825970060502C /* ANCRedirectStepDelegate.swift in Sources */,
 				E21FE5871EFC092C006F6B60 /* AppDelegate.swift in Sources */,
+				E24AAB121F1D968D003C276D /* ANCAuthStepGenerator.swift in Sources */,
 				E21D116A1F1409F200351E7A /* ANCOnboardingViewController.swift in Sources */,
+				E24AAB0C1F1D84FD003C276D /* ANCOpenURLManager.swift in Sources */,
+				E24AAB0E1F1D85AE003C276D /* ANCAncileAuthDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

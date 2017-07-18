@@ -11,30 +11,34 @@ import OhmageOMHSDK
 import ResearchSuiteTaskBuilder
 import ResearchSuiteAppFramework
 
-class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, OhmageManagerProvider {
+open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, OhmageManagerProvider, AncileClientProvider {
     
     static public let kAncileAuthToken = "ancile_study_server_auth_token"
 
-    func valueInState(forKey: String) -> NSSecureCoding? {
+    public func valueInState(forKey: String) -> NSSecureCoding? {
         return self.get(key: forKey)
     }
     
-    func setValueInState(value: NSSecureCoding?, forKey: String) {
+    public func setValueInState(value: NSSecureCoding?, forKey: String) {
         self.set(value: value, key: forKey)
     }
     
-    func set(value: NSSecureCoding?, key: String) {
+    public func set(value: NSSecureCoding?, key: String) {
         RSAFKeychainStateManager.setValueInState(value: value, forKey: key)
     }
-    func get(key: String) -> NSSecureCoding? {
+    public func get(key: String) -> NSSecureCoding? {
         return RSAFKeychainStateManager.valueInState(forKey: key)
     }
     
-    func getOhmageManager() -> OhmageOMHManager? {
+    public func getOhmageManager() -> OhmageOMHManager? {
         return (UIApplication.shared.delegate as? AppDelegate)?.ohmageManager
     }
     
-    func reset() {
+    public func getAncileClient() -> AncileStudyServerClient? {
+        return (UIApplication.shared.delegate as? AppDelegate)?.ancileClient
+    }
+    
+    public func reset() {
         RSAFKeychainStateManager.clearKeychain()
     }
     
