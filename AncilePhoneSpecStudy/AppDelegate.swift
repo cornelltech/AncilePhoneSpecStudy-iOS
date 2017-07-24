@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.ancileClient.coreAuthDelegate
         ])
         
-//        self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
+        self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
         
         
         
@@ -93,10 +93,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             answerFormatGeneratorServices: AppDelegate.answerFormatGeneratorServices
         )
         
-//        self.resultsProcessor = RSRPResultsProcessor(
-//            frontEndTransformers: AppDelegate.resultsTransformers,
-//            backEnd: ORBEManager(ohmageManager: self.ohmageManager)
-//        )
+        self.resultsProcessor = RSRPResultsProcessor(
+            frontEndTransformers: AppDelegate.resultsTransformers,
+            backEnd: ORBEManager(ohmageManager: self.ohmageManager)
+        )
         
         self.activityManager = ANCActivityManager(activityFilename: "activities", taskBuilder: self.taskBuilder)
         
@@ -182,7 +182,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CTFBARTSummaryResultsTransformer.self,
             CTFDelayDiscountingRawResultsTransformer.self,
             YADLSpotRaw.self,
-            YADLFullRaw.self
+            YADLFullRaw.self,
+            ANCWeeklySurveyResult.self
         ]
     }
 

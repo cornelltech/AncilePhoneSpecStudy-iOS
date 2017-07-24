@@ -29,7 +29,7 @@ open class AncileStudyServerClient: NSObject {
     
     private var _authToken: String?
     
-    var authToken: String? {
+    public var authToken: String? {
         get {
             return _authToken
         }
@@ -235,6 +235,35 @@ open class AncileStudyServerClient: NSObject {
 //    }
     
     open func postConsent(token: String, completion: @escaping ((Bool, Error?) -> ())) {
+        
+        let urlString = "\(self.baseURL)/consent"
+        
+        let headers = ["Authorization": "Token \(token)"]
+        
+        let request = Alamofire.request(
+            urlString,
+            method: .post,
+            headers: headers)
+        
+        debugPrint(headers)
+        
+        request.responseJSON(queue: self.dispatchQueue) { (jsonResponse) in
+            
+            debugPrint(jsonResponse)
+            //check for lower level errors
+            if let error = jsonResponse.result.error as? NSError {
+                if error.code == NSURLErrorNotConnectedToInternet {
+                    completion(false, AncileStudyServerClientError.unreachableError(underlyingError: error))
+                    return
+                }
+                else {
+                    completion(false, AncileStudyServerClientError.otherError(underlyingError: error))
+                    return
+                }
+            }
+            
+            completion(true, nil)            
+        }
         
     }
     

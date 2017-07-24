@@ -33,6 +33,12 @@
 		E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */; };
 		E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */; };
 		E2E4107D1F14224900FF8FA6 /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E4107C1F14224900FF8FA6 /* activities.json */; };
+		E2E793BF1F1FB37E00E4A947 /* OMHClient.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */; };
+		E2E793E01F20DC1A00E4A947 /* ANCConsentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793DF1F20DC1A00E4A947 /* ANCConsentDocument.swift */; };
+		E2E793E21F20E70F00E4A947 /* ANCOhmageAuthDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793E11F20E70F00E4A947 /* ANCOhmageAuthDelegate.swift */; };
+		E2E793E41F21377C00E4A947 /* weeklySurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E793E31F21377C00E4A947 /* weeklySurvey.json */; };
+		E2E793E61F213A2500E4A947 /* ANCWeeklySurveyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */; };
+		E2E793E81F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +96,12 @@
 		E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivity.swift; sourceTree = "<group>"; };
 		E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTestViewController.swift; sourceTree = "<group>"; };
 		E2E4107C1F14224900FF8FA6 /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activities.json; path = config/json/activities.json; sourceTree = "<group>"; };
+		E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMHClient.plist; sourceTree = "<group>"; };
+		E2E793DF1F20DC1A00E4A947 /* ANCConsentDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCConsentDocument.swift; sourceTree = "<group>"; };
+		E2E793E11F20E70F00E4A947 /* ANCOhmageAuthDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOhmageAuthDelegate.swift; sourceTree = "<group>"; };
+		E2E793E31F21377C00E4A947 /* weeklySurvey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = weeklySurvey.json; path = config/json/weeklySurvey.json; sourceTree = "<group>"; };
+		E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCWeeklySurveyResult.swift; sourceTree = "<group>"; };
+		E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ANCWeeklySurveyResult+OMHDatapoint.swift"; sourceTree = "<group>"; };
 		FFB10B2C22501A23E4A3A29C /* Pods_AncilePhoneSpecStudyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AncilePhoneSpecStudyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -158,6 +170,8 @@
 			children = (
 				E2E4107A1F14221E00FF8FA6 /* config */,
 				E21FE5861EFC092C006F6B60 /* AppDelegate.swift */,
+				E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */,
+				E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */,
 				E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */,
 				E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */,
 				E21D116B1F140ED400351E7A /* ANCStore.swift */,
@@ -168,16 +182,19 @@
 				E22C26211F1829760060502C /* ANCRedirectStep.swift */,
 				E24AAB0D1F1D85AE003C276D /* ANCAncileAuthDelegate.swift */,
 				E24AAB0F1F1D9184003C276D /* ANCCoreAuthDelegate.swift */,
+				E2E793E11F20E70F00E4A947 /* ANCOhmageAuthDelegate.swift */,
 				E22C261D1F1825780060502C /* ANCRedirectStepViewController.swift */,
 				E22C261F1F1825970060502C /* ANCRedirectStepDelegate.swift */,
 				E24AAB031F1D64E1003C276D /* ANCOpenURLDelegate.swift */,
 				E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */,
 				E24AAB111F1D968D003C276D /* ANCAuthStepGenerator.swift */,
 				E24AAB141F1D9813003C276D /* ANCRedirectStepDescriptor.swift */,
+				E2E793DF1F20DC1A00E4A947 /* ANCConsentDocument.swift */,
 				E21FE58A1EFC092C006F6B60 /* Main.storyboard */,
 				E21FE58D1EFC092C006F6B60 /* Assets.xcassets */,
 				E21FE58F1EFC092C006F6B60 /* LaunchScreen.storyboard */,
 				E21FE5921EFC092C006F6B60 /* Info.plist */,
+				E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */,
 			);
 			path = AncilePhoneSpecStudy;
 			sourceTree = "<group>";
@@ -212,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				E2E4107C1F14224900FF8FA6 /* activities.json */,
+				E2E793E31F21377C00E4A947 /* weeklySurvey.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -351,6 +369,8 @@
 				E2E4107D1F14224900FF8FA6 /* activities.json in Resources */,
 				E21FE5911EFC092C006F6B60 /* LaunchScreen.storyboard in Resources */,
 				E21FE58E1EFC092C006F6B60 /* Assets.xcassets in Resources */,
+				E2E793BF1F1FB37E00E4A947 /* OMHClient.plist in Resources */,
+				E2E793E41F21377C00E4A947 /* weeklySurvey.json in Resources */,
 				E21FE58C1EFC092C006F6B60 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,14 +542,18 @@
 				E21FE5C61EFC652F006F6B60 /* AncileStudyServerClientError.swift in Sources */,
 				E24AAB041F1D64E1003C276D /* ANCOpenURLDelegate.swift in Sources */,
 				E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */,
+				E2E793E01F20DC1A00E4A947 /* ANCConsentDocument.swift in Sources */,
 				E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */,
 				E22C261E1F1825780060502C /* ANCRedirectStepViewController.swift in Sources */,
+				E2E793E21F20E70F00E4A947 /* ANCOhmageAuthDelegate.swift in Sources */,
 				E24AAB151F1D9813003C276D /* ANCRedirectStepDescriptor.swift in Sources */,
 				E22C26201F1825970060502C /* ANCRedirectStepDelegate.swift in Sources */,
 				E21FE5871EFC092C006F6B60 /* AppDelegate.swift in Sources */,
+				E2E793E81F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift in Sources */,
 				E24AAB121F1D968D003C276D /* ANCAuthStepGenerator.swift in Sources */,
 				E21D116A1F1409F200351E7A /* ANCOnboardingViewController.swift in Sources */,
 				E24AAB0C1F1D84FD003C276D /* ANCOpenURLManager.swift in Sources */,
+				E2E793E61F213A2500E4A947 /* ANCWeeklySurveyResult.swift in Sources */,
 				E24AAB0E1F1D85AE003C276D /* ANCAncileAuthDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

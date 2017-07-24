@@ -8,6 +8,7 @@
 
 import UIKit
 import Gloss
+import ResearchSuiteResultsProcessor
 
 class ANCActivity: Decodable {
 
@@ -15,6 +16,7 @@ class ANCActivity: Decodable {
     let identifier: String
     let type: String
     let element: JSON
+    let resultTransforms: [RSRPResultTransform]
     required public init?(json: JSON) {
         
         guard let type: String = "type" <~~ json,
@@ -25,6 +27,15 @@ class ANCActivity: Decodable {
         self.identifier = identifier
         self.type = type
         self.element = element
+        self.resultTransforms = {
+            guard let resultTransforms: [JSON] = "resultTransforms" <~~ json else {
+                return []
+            }
+            
+            return resultTransforms.flatMap({ (transform) -> RSRPResultTransform? in
+                return RSRPResultTransform(json: transform)
+            })
+        }()
     }
     
 }
