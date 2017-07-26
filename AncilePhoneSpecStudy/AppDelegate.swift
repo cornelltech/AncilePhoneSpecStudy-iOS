@@ -90,7 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             stateHelper: self.store,
             elementGeneratorServices: AppDelegate.elementGeneratorServices,
             stepGeneratorServices: AppDelegate.stepGeneratorServices,
-            answerFormatGeneratorServices: AppDelegate.answerFormatGeneratorServices
+            answerFormatGeneratorServices: AppDelegate.answerFormatGeneratorServices,
+            consentDocumentGeneratorServices: AppDelegate.consentDocumentGeneratorServices,
+            consentSectionGeneratorServices: AppDelegate.consentSectionGeneratorServices,
+            consentSignatureGeneratorServices: AppDelegate.consentSignatureGeneratorServices
         )
         
         self.resultsProcessor = RSRPResultsProcessor(
@@ -177,6 +180,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
     }
     
+    open class var consentDocumentGeneratorServices: [RSTBConsentDocumentGenerator.Type] {
+        return [
+            RSTBStandardConsentDocument.self
+        ]
+    }
+    
+    open class var consentSectionGeneratorServices: [RSTBConsentSectionGenerator.Type] {
+        return [
+            RSTBStandardConsentSectionGenerator.self
+        ]
+    }
+    
+    open class var consentSignatureGeneratorServices: [RSTBConsentSignatureGenerator.Type] {
+        return [
+            RSTBParticipantConsentSignatureGenerator.self,
+            RSTBInvestigatorConsentSignatureGenerator.self
+        ]
+    }
+    
     open class var resultsTransformers: [RSRPFrontEndTransformer.Type] {
         return [
             CTFBARTSummaryResultsTransformer.self,
@@ -186,6 +208,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ANCWeeklySurveyResult.self
         ]
     }
+    
+    
 
 
 }

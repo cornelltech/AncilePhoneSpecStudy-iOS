@@ -13,7 +13,8 @@ target 'AncilePhoneSpecStudy' do
   pod "OhmageOMHSDK/RSTBSupport"
   pod "sdlrkx"
   pod "ResearchKit", '1.4.1'
-  pod "ResearchSuiteTaskBuilder"
+  # pod "ResearchSuiteTaskBuilder"
+  pod "ResearchSuiteTaskBuilder",:path => '~/Developer/ResearchSuite/iOS/ResearchSuiteTaskBuilder-ios'
   pod "ResearchSuiteResultsProcessor"
   pod "Alamofire", '~> 4'
   pod "ResearchSuiteAppFramework"

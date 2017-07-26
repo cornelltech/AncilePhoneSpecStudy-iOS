@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import OhmageOMHSDK
 
 open class ANCOhmageAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLDelegate {
     
-    private weak var client: AncileStudyServerClient!
+    private weak var client: OhmageOMHManager!
     private var authCompletion: ((Error?) -> ())? = nil
     
-    init(client: AncileStudyServerClient) {
+    init(client: OhmageOMHManager) {
         super.init()
         self.client = client
     }
@@ -25,31 +26,33 @@ open class ANCOhmageAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLD
     
     public func beginRedirect(completion: @escaping ((Error?) -> ())) {
         
-        guard let authToken = self.client.authToken else {
-            return
-        }
         
-        self.authCompletion = completion
         
-        self.client.getCoreLink(authToken: authToken) { (urlString, error) in
-            
-            debugPrint(urlString)
-            if let err = error {
-                debugPrint(err)
-                self.authCompletion?(error)
-                return
-            }
-            
-            if let urlString = urlString,
-                let url: URL = URL(string: urlString) {
-                ANCOpenURLManager.safeOpenURL(url: url)
-                return
-            }
-            else {
-                self.authCompletion?(nil)
-            }
-            
-        }
+//        guard let authToken = self.client.authToken else {
+//            return
+//        }
+//        
+//        self.authCompletion = completion
+//        
+//        self.client.getCoreLink(authToken: authToken) { (urlString, error) in
+//            
+//            debugPrint(urlString)
+//            if let err = error {
+//                debugPrint(err)
+//                self.authCompletion?(error)
+//                return
+//            }
+//            
+//            if let urlString = urlString,
+//                let url: URL = URL(string: urlString) {
+//                ANCOpenURLManager.safeOpenURL(url: url)
+//                return
+//            }
+//            else {
+//                self.authCompletion?(nil)
+//            }
+//            
+//        }
     }
     
     public func handleURL(url: URL) -> Bool {

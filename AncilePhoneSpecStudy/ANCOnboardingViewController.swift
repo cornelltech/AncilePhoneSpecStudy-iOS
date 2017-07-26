@@ -9,6 +9,8 @@
 import UIKit
 import ResearchSuiteAppFramework
 import ResearchKit
+import ResearchSuiteTaskBuilder
+import Gloss
 
 open class ANCOnboardingViewController: UIViewController {
     
@@ -225,7 +227,15 @@ open class ANCOnboardingViewController: UIViewController {
     }
     
     func consentTask() -> ORKTask? {
-        let consentDocument = ANCConsentDocument()
+//        let consentDocument = ANCConsentDocument()
+        
+        guard let consentDocumentJSON = AppDelegate.appDelegate.taskBuilder.helper.getJson(forFilename: "consentDocument") as? JSON,
+            let consentDocType: String = "type" <~~ consentDocumentJSON,
+            let consentDocument = AppDelegate.appDelegate.taskBuilder.generateConsentDocument(
+                type: consentDocType, jsonObject: consentDocumentJSON, helper: AppDelegate.appDelegate.taskBuilder.helper) else {
+                    return nil
+        }
+        
         let visualConsentStep = ORKVisualConsentStep(identifier: "visualConsentStep", document: consentDocument)
         
         guard let signature = consentDocument.signatures?.first else {

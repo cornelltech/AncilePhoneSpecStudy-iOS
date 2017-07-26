@@ -12,6 +12,7 @@
 		A5B06680B13076C224C10007 /* Pods_AncilePhoneSpecStudyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7CDE23C7A4BDD412C0C05A /* Pods_AncilePhoneSpecStudyUITests.framework */; };
 		E21D116A1F1409F200351E7A /* ANCOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */; };
 		E21D116C1F140ED400351E7A /* ANCStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21D116B1F140ED400351E7A /* ANCStore.swift */; };
+		E21EA7991F2944CF00997DB6 /* consentDocument.json in Resources */ = {isa = PBXBuildFile; fileRef = E21EA7981F2944CF00997DB6 /* consentDocument.json */; };
 		E21FE5871EFC092C006F6B60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5861EFC092C006F6B60 /* AppDelegate.swift */; };
 		E21FE58C1EFC092C006F6B60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21FE58A1EFC092C006F6B60 /* Main.storyboard */; };
 		E21FE58E1EFC092C006F6B60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E21FE58D1EFC092C006F6B60 /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		A5886542AB2E1B4946F8FAAC /* Pods-AncilePhoneSpecStudyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AncilePhoneSpecStudyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AncilePhoneSpecStudyTests/Pods-AncilePhoneSpecStudyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOnboardingViewController.swift; sourceTree = "<group>"; };
 		E21D116B1F140ED400351E7A /* ANCStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCStore.swift; sourceTree = "<group>"; };
+		E21EA7981F2944CF00997DB6 /* consentDocument.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = consentDocument.json; path = config/json/consentDocument.json; sourceTree = "<group>"; };
 		E21FE5831EFC092C006F6B60 /* AncilePhoneSpecStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AncilePhoneSpecStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E21FE5861EFC092C006F6B60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E21FE58B1EFC092C006F6B60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		E2E4107B1F14222200FF8FA6 /* json */ = {
 			isa = PBXGroup;
 			children = (
+				E21EA7981F2944CF00997DB6 /* consentDocument.json */,
 				E2E4107C1F14224900FF8FA6 /* activities.json */,
 				E2E793E31F21377C00E4A947 /* weeklySurvey.json */,
 			);
@@ -366,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E21EA7991F2944CF00997DB6 /* consentDocument.json in Resources */,
 				E2E4107D1F14224900FF8FA6 /* activities.json in Resources */,
 				E21FE5911EFC092C006F6B60 /* LaunchScreen.storyboard in Resources */,
 				E21FE58E1EFC092C006F6B60 /* Assets.xcassets in Resources */,
