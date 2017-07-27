@@ -15,7 +15,7 @@
         <!--Onboarding View Controller-->
         <scene sceneID="pie-ul-bam">
             <objects>
-                <viewController id="Okk-0H-ZuH" customClass="ANCOnboardingViewController" customModule="AncilePhoneSpecStudy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="onboarding" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Okk-0H-ZuH" customClass="ANCOnboardingViewController" customModule="AncilePhoneSpecStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nfa-yp-rKx"/>
                         <viewControllerLayoutGuide type="bottom" id="Vvr-eq-cnW"/>
@@ -54,10 +54,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Vvr-eq-cnW" firstAttribute="top" secondItem="aoW-Zr-I12" secondAttribute="bottom" id="Dts-KH-VRU"/>
                             <constraint firstItem="b6r-Hk-AjV" firstAttribute="centerY" secondItem="x4S-bH-TTC" secondAttribute="centerY" id="Yd6-se-HV4"/>
                             <constraint firstItem="b6r-Hk-AjV" firstAttribute="centerX" secondItem="x4S-bH-TTC" secondAttribute="centerX" id="bmr-yR-7c3"/>
                             <constraint firstItem="b6r-Hk-AjV" firstAttribute="width" secondItem="x4S-bH-TTC" secondAttribute="width" multiplier="0.75" id="g4w-Mc-meL"/>
+                            <constraint firstItem="Vvr-eq-cnW" firstAttribute="top" secondItem="aoW-Zr-I12" secondAttribute="bottom" id="njN-XG-4AE"/>
                             <constraint firstItem="aoW-Zr-I12" firstAttribute="top" secondItem="b6r-Hk-AjV" secondAttribute="bottom" id="q57-xu-Bqs"/>
                             <constraint firstItem="aoW-Zr-I12" firstAttribute="leading" secondItem="x4S-bH-TTC" secondAttribute="leadingMargin" id="w39-6D-suh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aoW-Zr-I12" secondAttribute="trailing" id="x94-S8-7eb"/>
@@ -66,7 +66,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZCh-Tr-vtr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="892.80359820089961"/>
+            <point key="canvasLocation" x="-143" y="881"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HYy-to-aOI">
+            <objects>
+                <navigationController storyboardIdentifier="home" id="YXZ-iZ-qUm" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jle-yc-l0p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="3ku-0h-jTo" kind="relationship" relationship="rootViewController" id="vIH-39-4l7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h6b-e5-qVq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1054" y="1587"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="4Gi-zq-WSJ">
+            <objects>
+                <viewController id="3ku-0h-jTo" customClass="ANCHomeViewController" customModule="AncilePhoneSpecStudy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="0dC-Ne-RL2"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ia-FT-4vD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fW0-Jx-FbA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="jVd-wE-gkm">
+                                <rect key="frame" x="46" y="123" width="281.5" height="421"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jVd-wE-gkm" secondAttribute="height" multiplier="1:1.5" id="DtC-Oo-EEZ"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jVd-wE-gkm" firstAttribute="width" secondItem="fW0-Jx-FbA" secondAttribute="width" multiplier="0.75" id="9oE-Ih-tlG"/>
+                            <constraint firstItem="jVd-wE-gkm" firstAttribute="centerY" secondItem="fW0-Jx-FbA" secondAttribute="centerY" id="ayv-zz-HIZ"/>
+                            <constraint firstItem="jVd-wE-gkm" firstAttribute="centerX" secondItem="fW0-Jx-FbA" secondAttribute="centerX" id="fFP-hq-dfJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="cWi-pl-SGb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kiw-vw-EDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="1588"/>
         </scene>
         <!--Redirect Step View Controller-->
         <scene sceneID="tTc-gi-U4s">
@@ -144,45 +192,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w85-MC-5bb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="998" y="958"/>
-        </scene>
-        <!--Auth Test View Controller-->
-        <scene sceneID="az1-Xe-rUc">
-            <objects>
-                <viewController id="wTB-tY-5fR" customClass="AuthTestViewController" customModule="AncilePhoneSpecStudy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="G6e-M9-Q27"/>
-                        <viewControllerLayoutGuide type="bottom" id="YEb-c3-XRG"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tWf-CK-Z72">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5p-vC-Yxp">
-                                <rect key="frame" x="150" y="318" width="75" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Main Login"/>
-                                <connections>
-                                    <action selector="getStartedTapped:" destination="wTB-tY-5fR" eventType="touchUpInside" id="VMn-rI-aLx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2aN-Tf-Uim">
-                                <rect key="frame" x="153" y="486" width="69" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Core Auth"/>
-                                <connections>
-                                    <action selector="coreAuthTapped:" destination="wTB-tY-5fR" eventType="touchUpInside" id="o5x-3A-zED"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="coreAuthButton" destination="2aN-Tf-Uim" id="FXf-fn-p9Y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mCO-ai-O0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-20" y="1658"/>
         </scene>
     </scenes>
     <resources>

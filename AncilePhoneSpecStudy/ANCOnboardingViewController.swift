@@ -13,11 +13,6 @@ import ResearchSuiteTaskBuilder
 import Gloss
 
 open class ANCOnboardingViewController: UIViewController {
-    
-    var eligible = false
-    var consented = false
-    var authenticated = false
-    var notificationSet = false
 
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -31,24 +26,18 @@ open class ANCOnboardingViewController: UIViewController {
     }
     
     @IBAction func getStartedTapped(_ sender: Any) {
-//        let url: URL = (AppDelegate.appDelegate.client?.authURL)!
-//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
         
         self.launchActivity()
         
     }
     
-    func chooseActivity() -> String? {
-        if !eligible {
-            return "eligibility"
-        }
-    
-        return "authFlow"
-    }
-    
     func launchActivity() {
         
-        if !eligible {
+        guard let appDelegate = AppDelegate.appDelegate else {
+            return
+        }
+        
+        if !appDelegate.isEligible {
             
             guard let task = AppDelegate.appDelegate.activityManager.task(for: "eligibility") else {
                 return
@@ -70,7 +59,7 @@ open class ANCOnboardingViewController: UIViewController {
                         return
                 }
                 
-                self?.eligible = eligible
+                appDelegate.store.isEligible = true
                 self?.dismiss(animated: true, completion: {
                     if eligible {
                         self?.launchActivity()
@@ -81,9 +70,9 @@ open class ANCOnboardingViewController: UIViewController {
             
             self.present(tvc, animated: true, completion: nil)
         }
-        else if !consented {
+        else if !appDelegate.isConsented {
             
-            guard let task = self.consentTask() else {
+            guard let (task, consentDoc) = self.consentTask() else {
                 return
             }
             
@@ -102,15 +91,39 @@ open class ANCOnboardingViewController: UIViewController {
                         return
                 }
                 
-                self?.consented = consentSignature.consented
+                consentSignature.apply(to: consentDoc)
                 
-                self?.dismiss(animated: true, completion: {
-                    if consentSignature.consented {
-                        self?.launchActivity()
+                consentDoc.makePDF(completionHandler: { (data, error) in
+                    
+                    if error == nil {
+                        guard let pdfData = data,
+                            let documentsPathString = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first else {
+                            return
+                        }
+                        
+                        let documentsPath: URL = URL(fileURLWithPath: documentsPathString)
+                        let pathComponent: String = "\(taskViewController.taskRunUUID.uuidString).pdf"
+                        let fileURL: URL = documentsPath.appendingPathComponent(pathComponent)
+                        
+                        do {
+                            try pdfData.write(to: fileURL, options: [Data.WritingOptions.completeFileProtection , Data.WritingOptions.atomic])
+                        } catch let error as NSError {
+                            print(error.localizedDescription)
+                        }
+                        
+                        debugPrint("Wrote PDF to \(fileURL.absoluteString)")
+                        
+                        //save file URL in state
+                        AppDelegate.appDelegate.store.consentDocURL = fileURL
                     }
+                    
+                    self?.dismiss(animated: true, completion: {
+                        if consentSignature.consented {
+                            self?.launchActivity()
+                        }
+                    })
+                    
                 })
-                
-                
                 
             })
             
@@ -118,7 +131,7 @@ open class ANCOnboardingViewController: UIViewController {
             
         }
         
-        else if !authenticated {
+        else if !appDelegate.isSignedIn || !appDelegate.isPasscodeSet {
             
             guard let appDelegate = (UIApplication.shared.delegate as? AppDelegate),
                 let ohmageClient = appDelegate.ohmageManager else {
@@ -138,34 +151,23 @@ open class ANCOnboardingViewController: UIViewController {
                         return
                     }
                     
-                    let taskResult = taskViewController.result
-                    
-                    //                guard let stepResult = taskResult.result(forIdentifier: "eligibility") as? ORKStepResult,
-                    //                    let ageResult = stepResult.result(forIdentifier: "age") as? ORKBooleanQuestionResult,
-                    //                    let eligible = ageResult.booleanAnswer?.boolValue else {
-                    //                        self?.dismiss(animated: true, completion: nil)
-                    //                        return
-                    //                }
-                    //
-                    //                self?.eligible = eligible
-                    
-                    self?.authenticated = true
-                    
-                    if let consented = self?.consented,
-                        let appDelegate = (UIApplication.shared.delegate as? AppDelegate),
-                        let authToken = appDelegate.ancileClient.authToken {
-                        if consented {
-                            appDelegate.ancileClient.postConsent(token: authToken, completion: { (consented, error) in
-                                
+                    if let authToken = appDelegate.ancileClient.authToken,
+                            appDelegate.isConsented {
+                        
+                        appDelegate.ancileClient.postConsent(token: authToken, completion: { (consented, error) in
+                            self?.dismiss(animated: true, completion: {
+                                self?.launchActivity()
                             })
-                        }
+                        })
                         
                     }
+                    else {
+                        self?.dismiss(animated: true, completion: {
+                            self?.launchActivity()
+                        })
+                    }
                     
-                    self?.dismiss(animated: true, completion: {
-                        
-                        self?.launchActivity()
-                    })
+                    
                     
                 })
                 
@@ -173,60 +175,61 @@ open class ANCOnboardingViewController: UIViewController {
                 
             })
             
-            
         }
-        else if !notificationSet {
-            guard let task = AppDelegate.appDelegate.activityManager.task(for: "notificationTime") else {
-                return
-            }
-            
-            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
-                
-                guard reason == ORKTaskViewControllerFinishReason.completed else {
-                    self?.dismiss(animated: true, completion: nil)
-                    return
-                }
-                
-                self?.notificationSet = true
-                self?.dismiss(animated: true, completion: {
-                    self?.launchActivity()
-                })
-                
-            })
-            
-            self.present(tvc, animated: true, completion: nil)
-        }
+//        else if !notificationSet {
+//            guard let task = AppDelegate.appDelegate.activityManager.task(for: "notificationTime") else {
+//                return
+//            }
+//            
+//            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
+//                
+//                guard reason == ORKTaskViewControllerFinishReason.completed else {
+//                    self?.dismiss(animated: true, completion: nil)
+//                    return
+//                }
+//                
+//                self?.notificationSet = true
+//                self?.dismiss(animated: true, completion: {
+//                    self?.launchActivity()
+//                })
+//                
+//            })
+//            
+//            self.present(tvc, animated: true, completion: nil)
+//        }
         else {
             
-            guard let task = AppDelegate.appDelegate.activityManager.task(for: "weeklySurvey"),
-                let activity = AppDelegate.appDelegate.activityManager.activity(for: "weeklySurvey") else {
-                return
-            }
+            appDelegate.showViewController(animated: true)
             
-            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
-                
-                guard reason == ORKTaskViewControllerFinishReason.completed else {
-                    self?.dismiss(animated: true, completion: nil)
-                    return
-                }
-                
-                let taskResult = taskViewController.result
-                
-                AppDelegate.appDelegate.resultsProcessor.processResult(taskResult: taskResult, resultTransforms: activity.resultTransforms)
-
-                self?.dismiss(animated: true, completion: {
-                })
-                
-            })
-            
-            self.present(tvc, animated: true, completion: nil)
+//            guard let task = AppDelegate.appDelegate.activityManager.task(for: "weeklySurvey"),
+//                let activity = AppDelegate.appDelegate.activityManager.activity(for: "weeklySurvey") else {
+//                return
+//            }
+//            
+//            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
+//                
+//                guard reason == ORKTaskViewControllerFinishReason.completed else {
+//                    self?.dismiss(animated: true, completion: nil)
+//                    return
+//                }
+//                
+//                let taskResult = taskViewController.result
+//                
+//                AppDelegate.appDelegate.resultsProcessor.processResult(taskResult: taskResult, resultTransforms: activity.resultTransforms)
+//
+//                self?.dismiss(animated: true, completion: {
+//                })
+//                
+//            })
+//            
+//            self.present(tvc, animated: true, completion: nil)
             
         }
         
         
     }
     
-    func consentTask() -> ORKTask? {
+    func consentTask() -> (ORKTask, ORKConsentDocument)? {
 //        let consentDocument = ANCConsentDocument()
         
         guard let consentDocumentJSON = AppDelegate.appDelegate.taskBuilder.helper.getJson(forFilename: "consentDocument") as? JSON,
@@ -248,10 +251,10 @@ open class ANCOnboardingViewController: UIViewController {
         reviewConsentStep.text = "Consent Review"
         reviewConsentStep.reasonForConsent = "You need to consent"
         
-        return ORKOrderedTask(identifier: "consentTask", steps: [
+        return (ORKOrderedTask(identifier: "consentTask", steps: [
             visualConsentStep,
             reviewConsentStep
-            ])
+            ]), consentDocument)
     }
     
     

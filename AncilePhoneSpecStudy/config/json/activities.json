@@ -42,6 +42,21 @@
             "identifier": "ohmageLogin",
             "type": "OhmageOMHLogin",
             "title": "Authenticate with Ohmage"
+          },
+          {
+            "identifier": "securing_data_instructions",
+            "type": "instruction",
+            "title": "Secure That Data!",
+            "text": "You'll be prompted to create a 4 digit passcode.\n\nPasscodes help keep participant data secure."
+          },
+          {
+            "identifier": "passcode",
+            "type": "passcode"
+          },
+          {
+            "identifier": "onboarding_completed_instructions",
+            "type": "instruction",
+            "title": "Onboarding Done!\n👏👏👏"
           }
         ]
       }

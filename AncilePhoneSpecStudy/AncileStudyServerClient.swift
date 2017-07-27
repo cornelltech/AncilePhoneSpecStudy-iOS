@@ -234,6 +234,14 @@ open class AncileStudyServerClient: NSObject {
 //        
 //    }
     
+    open var isSignedIn: Bool {
+        return self.authToken != nil
+    }
+    
+    open func signOut() {
+        self.authToken = nil
+    }
+    
     open func postConsent(token: String, completion: @escaping ((Bool, Error?) -> ())) {
         
         let urlString = "\(self.baseURL)/consent"

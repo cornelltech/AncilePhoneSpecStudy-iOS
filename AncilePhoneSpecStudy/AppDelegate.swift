@@ -13,9 +13,10 @@ import ResearchSuiteResultsProcessor
 import ResearchSuiteAppFramework
 import Gloss
 import sdlrkx
+import ResearchKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
 
     var window: UIWindow?
     var ancileClient: AncileStudyServerClient!
@@ -61,13 +62,109 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate! as! AppDelegate
     }
     
+    func signOut() {
+        self.ohmageManager.signOut { (error) in
+            self.ancileClient.signOut()
+            
+            if let consentDocURL = self.store.consentDocURL {
+                do {
+                    try FileManager.default.removeItem(at: consentDocURL)
+                }
+                catch let error as NSError {
+                    print(error.localizedDescription)
+                }
+                
+            }
+            
+            self.store.reset()
+            
+            self.showViewController(animated: true)
+        }
+    }
+    
+    var isSignedIn: Bool {
+        return self.ancileClient.isSignedIn && self.ohmageManager.isSignedIn
+    }
+    
+    var isPasscodeSet: Bool {
+        return ORKPasscodeViewController.isPasscodeStoredInKeychain()
+    }
+    
+    var isConsented: Bool {
+        return self.store.isConsented
+    }
+    
+    var isEligible: Bool {
+        return self.store.isEligible
+    }
+    
     func getQueryStringParameter(url: String, param: String) -> String? {
         guard let url = URLComponents(string: url) else { return nil }
         
         return url.queryItems?.first(where: { $0.name == param })?.value
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    /**
+     Convenience method for presenting a modal view controller.
+     */
+    open func presentViewController(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        guard let rootVC = self.window?.rootViewController else { return }
+        var topViewController: UIViewController = rootVC
+        while (topViewController.presentedViewController != nil) {
+            topViewController = topViewController.presentedViewController!
+        }
+        topViewController.present(viewController, animated: animated, completion: completion)
+    }
+    
+    /**
+     Convenience method for transitioning to the given view controller as the main window
+     rootViewController.
+     */
+    open func transition(toRootViewController: UIViewController, animated: Bool) {
+        guard let window = self.window else { return }
+        if (animated) {
+            let snapshot:UIView = (self.window?.snapshotView(afterScreenUpdates: true))!
+            toRootViewController.view.addSubview(snapshot);
+            
+            self.window?.rootViewController = toRootViewController;
+            
+            UIView.animate(withDuration: 0.3, animations: {() in
+                snapshot.layer.opacity = 0;
+            }, completion: {
+                (value: Bool) in
+                snapshot.removeFromSuperview()
+            })
+        }
+        else {
+            window.rootViewController = toRootViewController
+        }
+    }
+    
+    open func storyboardIDForCurrentState() -> String {
+        if self.isEligible &&
+            self.isConsented &&
+            self.isSignedIn &&
+            self.isPasscodeSet {
+            return "home"
+        }
+        else {
+            return "onboarding"
+        }
+    }
+    
+    open func showViewController(animated: Bool) {
+        
+        guard let _ = self.window else {
+            return
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: self.storyboardIDForCurrentState())
+        self.transition(toRootViewController: vc, animated: animated)
+        
+    }
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         self.store = ANCStore()
@@ -103,12 +200,105 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.activityManager = ANCActivityManager(activityFilename: "activities", taskBuilder: self.taskBuilder)
         
+        self.showViewController(animated: false)
+        
         return true
+    }
+    
+    open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        lockScreen()
+        return true
+    }
+    
+    // ------------------------------------------------
+    // MARK: Passcode Display Handling
+    // ------------------------------------------------
+    
+    private weak var passcodeViewController: UIViewController?
+    
+    /**
+     Should the passcode be displayed. By default, if there isn't a catasrophic error,
+     the user is registered and there is a passcode in the keychain, then show it.
+     */
+    open func shouldShowPasscode() -> Bool {
+        return (self.passcodeViewController == nil) &&
+            ORKPasscodeViewController.isPasscodeStoredInKeychain()
+    }
+    
+    private func instantiateViewControllerForPasscode() -> UIViewController? {
+        return ORKPasscodeViewController.passcodeAuthenticationViewController(withText: nil, delegate: self)
+    }
+    
+    public func lockScreen() {
+        
+        guard self.shouldShowPasscode(), let vc = instantiateViewControllerForPasscode() else {
+            return
+        }
+        
+        window?.makeKeyAndVisible()
+        
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .coverVertical
+        
+        passcodeViewController = vc
+        presentViewController(vc, animated: false, completion: nil)
+    }
+    
+    private func dismissPasscodeViewController(_ animated: Bool) {
+        self.passcodeViewController?.presentingViewController?.dismiss(animated: animated, completion: nil)
+    }
+    
+    private func resetPasscode() {
+        
+        // Dismiss the view controller unanimated
+        dismissPasscodeViewController(false)
+        
+        self.signOut()
+    }
+    
+    // MARK: ORKPasscodeDelegate
+    
+    open func passcodeViewControllerDidFinish(withSuccess viewController: UIViewController) {
+        dismissPasscodeViewController(true)
+    }
+    
+    open func passcodeViewControllerDidFailAuthentication(_ viewController: UIViewController) {
+        // Do nothing in default implementation
+    }
+    
+    open func passcodeViewControllerForgotPasscodeTapped(_ viewController: UIViewController) {
+        
+        let title = "Reset Passcode"
+        let message = "In order to reset your passcode, you'll need to log out of the app completely and log back in using your email and password."
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        let logoutAction = UIAlertAction(title: "Log Out", style: .destructive, handler: { _ in
+            self.resetPasscode()
+        })
+        alert.addAction(logoutAction)
+        
+        viewController.present(alert, animated: true, completion: nil)
+    }
+
+    func setContentHidden(vc: UIViewController, contentHidden: Bool) {
+        if let vc = vc.presentedViewController {
+            vc.view.isHidden = contentHidden
+        }
+        
+        vc.view.isHidden = contentHidden
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        if shouldShowPasscode() {
+            // Hide content so it doesn't appear in the app switcher.
+            if let vc = self.window?.rootViewController {
+                self.setContentHidden(vc: vc, contentHidden: true)
+            }
+            
+        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -118,10 +308,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        lockScreen()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // Make sure that the content view controller is not hiding content
+        if let vc = self.window?.rootViewController {
+            self.setContentHidden(vc: vc, contentHidden: false)
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
