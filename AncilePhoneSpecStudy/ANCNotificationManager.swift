@@ -25,10 +25,12 @@ open class ANCNotificationManager: NSObject {
         let now = Date()
         var components = DateComponents()
         ///matches next monday morning at 9am
-        components.weekday = 2
+//        components.weekday = 2
         components.hour = 9
         
         return calendar.nextDate(after: now, matching: components, matchingPolicy: .nextTime)
+        
+//        return Date().addingTimeInterval(60.0)
         
     }
     
@@ -54,7 +56,7 @@ open class ANCNotificationManager: NSObject {
 //            
 //            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
             
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 6*60*60.0, repeats: true)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 24*60*60.0, repeats: true)
             
             let request = UNNotificationRequest(identifier: kWeeklyNotificationIdentifer, content: content, trigger: trigger)
             
@@ -76,7 +78,8 @@ open class ANCNotificationManager: NSObject {
             let notification = UILocalNotification()
             notification.userInfo = ["identifier": kWeeklyNotificationIdentifer]
             notification.fireDate = initialFireDate
-            notification.repeatInterval = NSCalendar.Unit.weekOfYear
+//            notification.repeatInterval = NSCalendar.Unit.weekOfYear
+            notification.repeatInterval = NSCalendar.Unit.day
             notification.alertBody = "\(kWeeklyNotificationTitle), \(kWeeklyNotificationBody)"
             UIApplication.shared.scheduleLocalNotification(notification)
         }

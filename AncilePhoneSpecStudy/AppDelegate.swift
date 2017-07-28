@@ -63,6 +63,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
     }
     
     func signOut() {
+        
+        ANCNotificationManager.cancelNotifications()
+        
         self.ohmageManager.signOut { (error) in
             self.ancileClient.signOut()
             
@@ -77,6 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
             }
             
             self.store.reset()
+            
+            
             
             self.showViewController(animated: true)
         }
