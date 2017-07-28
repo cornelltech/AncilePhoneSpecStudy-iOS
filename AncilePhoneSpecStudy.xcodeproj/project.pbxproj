@@ -42,6 +42,7 @@
 		E2E793E81F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */; };
 		E2F44CAC1F2A92E600BEFAA8 /* ANCHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F44CAB1F2A92E600BEFAA8 /* ANCHomeViewController.swift */; };
 		E2F44CAE1F2AA60000BEFAA8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F44CAD1F2AA60000BEFAA8 /* HealthKit.framework */; };
+		E2F44CB11F2AAA5A00BEFAA8 /* ANCNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F44CB01F2AAA5A00BEFAA8 /* ANCNotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		E2F44CAB1F2A92E600BEFAA8 /* ANCHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCHomeViewController.swift; sourceTree = "<group>"; };
 		E2F44CAD1F2AA60000BEFAA8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E2F44CAF1F2AA60000BEFAA8 /* AncilePhoneSpecStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AncilePhoneSpecStudy.entitlements; sourceTree = "<group>"; };
+		E2F44CB01F2AAA5A00BEFAA8 /* ANCNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCNotificationManager.swift; sourceTree = "<group>"; };
 		FFB10B2C22501A23E4A3A29C /* Pods_AncilePhoneSpecStudyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AncilePhoneSpecStudyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 				E21FE5861EFC092C006F6B60 /* AppDelegate.swift */,
 				E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */,
 				E2F44CAB1F2A92E600BEFAA8 /* ANCHomeViewController.swift */,
+				E2F44CB01F2AAA5A00BEFAA8 /* ANCNotificationManager.swift */,
 				E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */,
 				E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */,
 				E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */,
@@ -558,6 +561,7 @@
 				E22C26221F1829760060502C /* ANCRedirectStep.swift in Sources */,
 				E24AAB101F1D9184003C276D /* ANCCoreAuthDelegate.swift in Sources */,
 				E21FE5C61EFC652F006F6B60 /* AncileStudyServerClientError.swift in Sources */,
+				E2F44CB11F2AAA5A00BEFAA8 /* ANCNotificationManager.swift in Sources */,
 				E2F44CAC1F2A92E600BEFAA8 /* ANCHomeViewController.swift in Sources */,
 				E24AAB041F1D64E1003C276D /* ANCOpenURLDelegate.swift in Sources */,
 				E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */,

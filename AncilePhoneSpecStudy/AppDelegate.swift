@@ -167,6 +167,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        if UserDefaults.standard.object(forKey: "FirstRun") == nil {
+            UserDefaults.standard.set("1stRun", forKey: "FirstRun")
+            UserDefaults.standard.synchronize()
+            do {
+                try ORKKeychainWrapper.resetKeychain()
+            } catch let error {
+                print("Got error \(error) when resetting keychain")
+            }
+        }
+        
         self.store = ANCStore()
         
         self.ancileClient = AncileStudyServerClient(

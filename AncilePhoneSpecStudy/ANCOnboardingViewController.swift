@@ -176,54 +176,10 @@ open class ANCOnboardingViewController: UIViewController {
             })
             
         }
-//        else if !notificationSet {
-//            guard let task = AppDelegate.appDelegate.activityManager.task(for: "notificationTime") else {
-//                return
-//            }
-//            
-//            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
-//                
-//                guard reason == ORKTaskViewControllerFinishReason.completed else {
-//                    self?.dismiss(animated: true, completion: nil)
-//                    return
-//                }
-//                
-//                self?.notificationSet = true
-//                self?.dismiss(animated: true, completion: {
-//                    self?.launchActivity()
-//                })
-//                
-//            })
-//            
-//            self.present(tvc, animated: true, completion: nil)
-//        }
+
         else {
-            
+            ANCNotificationManager.setNotifications()
             appDelegate.showViewController(animated: true)
-            
-//            guard let task = AppDelegate.appDelegate.activityManager.task(for: "weeklySurvey"),
-//                let activity = AppDelegate.appDelegate.activityManager.activity(for: "weeklySurvey") else {
-//                return
-//            }
-//            
-//            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
-//                
-//                guard reason == ORKTaskViewControllerFinishReason.completed else {
-//                    self?.dismiss(animated: true, completion: nil)
-//                    return
-//                }
-//                
-//                let taskResult = taskViewController.result
-//                
-//                AppDelegate.appDelegate.resultsProcessor.processResult(taskResult: taskResult, resultTransforms: activity.resultTransforms)
-//
-//                self?.dismiss(animated: true, completion: {
-//                })
-//                
-//            })
-//            
-//            self.present(tvc, animated: true, completion: nil)
-            
         }
         
         

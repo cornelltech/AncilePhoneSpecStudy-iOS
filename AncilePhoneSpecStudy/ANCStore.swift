@@ -16,6 +16,7 @@ open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, Ohm
     static public let kAncileAuthToken = "ancile_study_server_auth_token"
     static public let kConsentDocURL = "ancile_study_consent_doc_URL"
     static public let kLastSurveyCompletionTime = "ancile_study_last_survey_completion_time"
+    static public let kLastSurveyLaunchTime = "ancile_study_last_survey_launch_time"
     static public let kEligible = "ancile_study_eligible"
 
     public func valueInState(forKey: String) -> NSSecureCoding? {
@@ -74,6 +75,20 @@ open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, Ohm
             }
             else {
                 self.set(value: nil, key: ANCStore.kLastSurveyCompletionTime)
+            }
+        }
+    }
+    
+    open var lastSurveyLaunchTime: Date? {
+        get {
+            return self.get(key: ANCStore.kLastSurveyLaunchTime) as? Date
+        }
+        set {
+            if let date = newValue {
+                self.set(value: date as NSDate, key: ANCStore.kLastSurveyLaunchTime)
+            }
+            else {
+                self.set(value: nil, key: ANCStore.kLastSurveyLaunchTime)
             }
         }
     }
