@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import ResearchSuiteExtensions
 
 //this class handles Ancile Study Server Auth
 //In beginRedirect, we save a reference to the closure, then open the url for auth
 //in handle url, extract 
-public class ANCAncileAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLDelegate {
+public class ANCAncileAuthDelegate: NSObject, RSRedirectStepDelegate {
     
     private weak var client: AncileStudyServerClient!
     private var authCompletion: ((Error?) -> ())? = nil
@@ -21,8 +22,7 @@ public class ANCAncileAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenUR
         self.client = client
     }
     
-    
-    public func redirectViewControllerDidLoad(viewController: ANCRedirectStepViewController) {
+    public func redirectViewControllerDidLoad(viewController: RSRedirectStepViewController) {
         
     }
     
@@ -37,7 +37,7 @@ public class ANCAncileAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenUR
         }
     }
     
-    public func handleURL(url: URL) -> Bool {
+    public func handleURL(app: UIApplication, url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         //check to see if this matches the expected format
         //ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/callback?code={CODE}

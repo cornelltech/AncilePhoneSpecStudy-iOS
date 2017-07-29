@@ -40,8 +40,9 @@
           },
           {
             "identifier": "ohmageLogin",
-            "type": "OhmageOMHLogin",
-            "title": "Authenticate with Ohmage"
+            "type": "OhmageOMHRedirectLogin",
+            "title": "Authenticate with Ohmage",
+            "buttonText": "Authenticate"
           },
           {
             "identifier": "securing_data_instructions",

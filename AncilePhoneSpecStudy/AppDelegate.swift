@@ -189,15 +189,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
             store: self.store
         )
         
-        self.openURLManager = ANCOpenURLManager(openURLDelegates: [
-            self.ancileClient.ancileAuthDelegate,
-            self.ancileClient.coreAuthDelegate
-        ])
-        
         self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
         
-        
-        
+        self.openURLManager = ANCOpenURLManager(openURLDelegates: [
+            self.ancileClient.ancileAuthDelegate,
+            self.ancileClient.coreAuthDelegate,
+            self.ohmageManager
+        ])
+
         self.taskBuilder = RSTBTaskBuilder(
             stateHelper: self.store,
             elementGeneratorServices: AppDelegate.elementGeneratorServices,
@@ -338,11 +337,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    
-    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         debugPrint(url)
-        return self.openURLManager.handleURL(url: url)
+        return self.openURLManager.handleURL(app: app, url: url, options: options)
     }
     
     
@@ -366,7 +363,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
             YADLFullStepGenerator(),
             YADLSpotStepGenerator(),
             ANCAncileAuthStepGenerator(),
-            ANCCoreAuthStepGenerator()
+            ANCCoreAuthStepGenerator(),
+            CTFOhmageRedirectLoginStepGenerator()
         ]
     }
     

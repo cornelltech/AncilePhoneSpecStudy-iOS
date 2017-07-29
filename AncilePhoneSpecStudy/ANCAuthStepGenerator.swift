@@ -10,50 +10,9 @@ import UIKit
 import ResearchSuiteTaskBuilder
 import ResearchKit
 import Gloss
+import ResearchSuiteExtensions
 
-open class ANCAuthStepGenerator: RSTBBaseStepGenerator {
-    
-    public init(){}
-    
-    open var supportedTypes: [String]! {
-        return nil
-    }
-    
-    open func getDelegate(ancileClient: AncileStudyServerClient) -> ANCRedirectStepDelegate! {
-        return nil
-    }
-    
-    open func generateStep(type: String, jsonObject: JSON, helper: RSTBTaskBuilderHelper) -> ORKStep? {
-        
-        guard let stepDescriptor = ANCRedirectStepDescriptor(json:jsonObject),
-            let ancileClientProvider = helper.stateHelper as? AncileClientProvider,
-            let ancileClient = ancileClientProvider.getAncileClient() else {
-                return nil
-        }
-        
-        let step = ANCRedirectStep(
-            identifier: stepDescriptor.identifier,
-            title: stepDescriptor.title,
-            text: stepDescriptor.text,
-            buttonText: stepDescriptor.buttonText,
-            delegate: self.getDelegate(ancileClient: ancileClient)
-        )
-        
-        step.isOptional = stepDescriptor.optional
-        
-        return step
-    }
-    
-    open func processStepResult(type: String,
-                                jsonObject: JsonObject,
-                                result: ORKStepResult,
-                                helper: RSTBTaskBuilderHelper) -> JSON? {
-        return nil
-    }
-
-}
-
-open class ANCAncileAuthStepGenerator: ANCAuthStepGenerator {
+open class ANCAncileAuthStepGenerator: RSRedirectStepGenerator {
     let _supportedTypes = [
         "AncileAuth"
     ]
@@ -62,13 +21,19 @@ open class ANCAncileAuthStepGenerator: ANCAuthStepGenerator {
         return self._supportedTypes
     }
     
-    open override func getDelegate(ancileClient: AncileStudyServerClient) -> ANCRedirectStepDelegate! {
+    open override func getDelegate(helper: RSTBTaskBuilderHelper) -> RSRedirectStepDelegate! {
+        
+        guard let ancileClientProvider = helper.stateHelper as? AncileClientProvider,
+            let ancileClient = ancileClientProvider.getAncileClient() else {
+                return nil
+        }
+        
         return ancileClient.ancileAuthDelegate
     }
 
 }
 
-open class ANCCoreAuthStepGenerator: ANCAuthStepGenerator {
+open class ANCCoreAuthStepGenerator: RSRedirectStepGenerator {
     let _supportedTypes = [
         "CoreAuth"
     ]
@@ -77,7 +42,12 @@ open class ANCCoreAuthStepGenerator: ANCAuthStepGenerator {
         return self._supportedTypes
     }
     
-    open override func getDelegate(ancileClient: AncileStudyServerClient) -> ANCRedirectStepDelegate! {
+    open override func getDelegate(helper: RSTBTaskBuilderHelper) -> RSRedirectStepDelegate! {
+        guard let ancileClientProvider = helper.stateHelper as? AncileClientProvider,
+            let ancileClient = ancileClientProvider.getAncileClient() else {
+                return nil
+        }
+        
         return ancileClient.coreAuthDelegate
     }
     

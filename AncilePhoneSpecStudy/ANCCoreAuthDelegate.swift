@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import ResearchSuiteExtensions
 
-public class ANCCoreAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLDelegate {
+public class ANCCoreAuthDelegate: NSObject, RSRedirectStepDelegate {
 
     private weak var client: AncileStudyServerClient!
     private var authCompletion: ((Error?) -> ())? = nil
@@ -19,7 +20,7 @@ public class ANCCoreAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLD
     }
     
     
-    public func redirectViewControllerDidLoad(viewController: ANCRedirectStepViewController) {
+    public func redirectViewControllerDidLoad(viewController: RSRedirectStepViewController) {
         
     }
     
@@ -52,7 +53,7 @@ public class ANCCoreAuthDelegate: NSObject, ANCRedirectStepDelegate, ANCOpenURLD
         }
     }
     
-    public func handleURL(url: URL) -> Bool {
+    public func handleURL(app: UIApplication, url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
         
         //check to see if this matches the expected format
         //ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/callback?code={CODE}

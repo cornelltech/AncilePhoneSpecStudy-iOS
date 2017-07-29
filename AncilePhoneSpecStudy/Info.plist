@@ -28,19 +28,19 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSCameraUsageDescription</key>
-    <string>Ancile would like to access your camera during some active tasks.</string>
-    <key>NSHealthShareUsageDescription</key>
-    <string>Ancile would like to access your Health data for reserach purposes.</string>
-    <key>NSHealthUpdateUsageDescription</key>
-    <string>Ancile would like to update your Health data for reserach purposes.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Ancile would like to access your microphone during some active tasks.</string>
-    <key>NSMotionUsageDescription</key>
-    <string>Ancile would like to monitor your activity during some active tasks.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Ancile would like to access your camera during some active tasks.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Ancile would like to access your Health data for reserach purposes.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Ancile would like to update your Health data for reserach purposes.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Ancile would like to access your microphone during some active tasks.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Ancile would like to monitor your activity during some active tasks.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

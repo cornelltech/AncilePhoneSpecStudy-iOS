@@ -7,10 +7,11 @@ target 'AncilePhoneSpecStudy' do
 
   # Pods for AncilePhoneSpecStudy
   # Pods for RSuiteDemo
-  pod "OhmageOMHSDK"
-  pod "OhmageOMHSDK/RKSupport"
-  pod "OhmageOMHSDK/RSRPSupport"
-  pod "OhmageOMHSDK/RSTBSupport"
+  pod "OhmageOMHSDK", '~> 0.4'
+  pod "OhmageOMHSDK/RKSupport", '~> 0.4'
+  pod "OhmageOMHSDK/RSRPSupport", '~> 0.4'
+  pod "OhmageOMHSDK/RSTBSupport", '~> 0.4'
+
   pod "sdlrkx"
   pod "ResearchKit", '1.4.1'
   # pod "ResearchSuiteTaskBuilder"
@@ -18,6 +19,7 @@ target 'AncilePhoneSpecStudy' do
   pod "ResearchSuiteResultsProcessor"
   pod "Alamofire", '~> 4'
   pod "ResearchSuiteAppFramework"
+  pod "ResearchSuiteExtensions", '~> 0.2'
 
   target 'AncilePhoneSpecStudyTests' do
     inherit! :search_paths
