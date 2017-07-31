@@ -14,12 +14,15 @@ import ResearchSuiteAppFramework
 import Gloss
 import sdlrkx
 import ResearchKit
+import AncileStudyServerClient
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
+    
+    static public let URLScheme: String = "ancile3ec3082ca348453caa716cc0ec41791e"
 
     var window: UIWindow?
-    var ancileClient: AncileStudyServerClient!
+    var ancileClient: ANCClient!
     
     var store: ANCStore!
     var ohmageManager: OhmageOMHManager!
@@ -184,8 +187,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         
         self.store = ANCStore()
         
-        self.ancileClient = AncileStudyServerClient(
+        self.ancileClient = ANCClient(
             baseURL: "https://ancile.cornelltech.io",
+            mobileURLScheme: AppDelegate.URLScheme,
             store: self.store
         )
         

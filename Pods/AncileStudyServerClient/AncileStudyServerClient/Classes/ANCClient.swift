@@ -1,5 +1,5 @@
 //
-//  AncileStudyServerClient.swift
+//  ANCClient.swift
 //  AncilePhoneSpecStudy
 //
 //  Created by James Kizer on 6/22/17.
@@ -9,20 +9,25 @@
 //import UIKit
 import Alamofire
 
-public protocol AncileClientProvider {
-    
-    func getAncileClient() -> AncileStudyServerClient?
-    
+public protocol ANCClientProvider {
+    func getAncileClient() -> ANCClient?
 }
 
-open class AncileStudyServerClient: NSObject {
+public protocol ANCClientCredentialStore {
+    func set(value: NSSecureCoding?, key: String)
+    func get(key: String) -> NSSecureCoding?
+}
+
+open class ANCClient: NSObject {
+    
+    static public let kAncileAuthToken = "ancile_study_server_auth_token"
     
     public struct SignInResponse {
         public let authToken: String
     }
     
     let baseURL: String
-    let store: ANCStore
+    let store: ANCClientCredentialStore 
     let dispatchQueue: DispatchQueue?
     public var ancileAuthDelegate: ANCAncileAuthDelegate!
     public var coreAuthDelegate: ANCCoreAuthDelegate!
@@ -36,24 +41,24 @@ open class AncileStudyServerClient: NSObject {
         set(newToken) {
             self._authToken = newToken
             if let token = newToken {
-                self.store.set(value: token as NSSecureCoding, key: ANCStore.kAncileAuthToken)
+                self.store.set(value: token as NSSecureCoding, key: ANCClient.kAncileAuthToken)
             }
             else {
-                self.store.set(value: nil, key: ANCStore.kAncileAuthToken)
+                self.store.set(value: nil, key: ANCClient.kAncileAuthToken)
             }
             
         }
     }
     
-    public init(baseURL: String, store: ANCStore, dispatchQueue: DispatchQueue? = nil) {
+    public init(baseURL: String, mobileURLScheme: String, store: ANCClientCredentialStore, dispatchQueue: DispatchQueue? = nil) {
         self.baseURL = baseURL
         self.store = store
-        self._authToken = store.get(key: ANCStore.kAncileAuthToken) as? String
+        self._authToken = store.get(key: ANCClient.kAncileAuthToken) as? String
         self.dispatchQueue = dispatchQueue
         super.init()
         
-        self.ancileAuthDelegate = ANCAncileAuthDelegate(client: self)
-        self.coreAuthDelegate = ANCCoreAuthDelegate(client: self)
+        self.ancileAuthDelegate = ANCAncileAuthDelegate(client: self, urlScheme: mobileURLScheme)
+        self.coreAuthDelegate = ANCCoreAuthDelegate(client: self, urlScheme: mobileURLScheme)
     }
 
     public var authURL: URL? {
@@ -68,11 +73,11 @@ open class AncileStudyServerClient: NSObject {
             //check for lower level errors
             if let error = jsonResponse.result.error as? NSError {
                 if error.code == NSURLErrorNotConnectedToInternet {
-                    completion(nil, AncileStudyServerClientError.unreachableError(underlyingError: error))
+                    completion(nil, ANCClientError.unreachableError(underlyingError: error))
                     return
                 }
                 else {
-                    completion(nil, AncileStudyServerClientError.otherError(underlyingError: error))
+                    completion(nil, ANCClientError.otherError(underlyingError: error))
                     return
                 }
             }
@@ -80,14 +85,14 @@ open class AncileStudyServerClient: NSObject {
             //check for our errors
             //credentialsFailure
             guard let response = jsonResponse.response else {
-                completion(nil, AncileStudyServerClientError.malformedResponse(responseBody: jsonResponse))
+                completion(nil, ANCClientError.malformedResponse(responseBody: jsonResponse))
                 return
             }
             
             if let response = jsonResponse.response,
                 response.statusCode == 502 {
                 debugPrint(jsonResponse)
-                completion(nil, AncileStudyServerClientError.badGatewayError)
+                completion(nil, ANCClientError.badGatewayError)
                 return
             }
             
@@ -121,7 +126,7 @@ open class AncileStudyServerClient: NSObject {
             guard jsonResponse.result.isSuccess,
                 let json = jsonResponse.result.value as? [String: Any],
                 let authToken = json["auth_token"] as? String else {
-                    completion(nil, AncileStudyServerClientError.malformedResponse(responseBody: jsonResponse.result.value))
+                    completion(nil, ANCClientError.malformedResponse(responseBody: jsonResponse.result.value))
                     return
             }
 
@@ -175,11 +180,11 @@ open class AncileStudyServerClient: NSObject {
             //check for lower level errors
             if let error = jsonResponse.result.error as? NSError {
                 if error.code == NSURLErrorNotConnectedToInternet {
-                    completion(nil, AncileStudyServerClientError.unreachableError(underlyingError: error))
+                    completion(nil, ANCClientError.unreachableError(underlyingError: error))
                     return
                 }
                 else {
-                    completion(nil, AncileStudyServerClientError.otherError(underlyingError: error))
+                    completion(nil, ANCClientError.otherError(underlyingError: error))
                     return
                 }
             }
@@ -187,14 +192,14 @@ open class AncileStudyServerClient: NSObject {
             //check for our errors
             //credentialsFailure
             guard let response = jsonResponse.response else {
-                completion(nil, AncileStudyServerClientError.malformedResponse(responseBody: jsonResponse))
+                completion(nil, ANCClientError.malformedResponse(responseBody: jsonResponse))
                 return
             }
             
             if let response = jsonResponse.response,
                 response.statusCode == 502 {
                 debugPrint(jsonResponse)
-                completion(nil, AncileStudyServerClientError.badGatewayError)
+                completion(nil, ANCClientError.badGatewayError)
                 return
             }
             
@@ -202,7 +207,7 @@ open class AncileStudyServerClient: NSObject {
             guard jsonResponse.result.isSuccess,
                 let json = jsonResponse.result.value as? [String: Any],
                 let url = json["core_auth_url"] as? String else {
-                    completion(nil, AncileStudyServerClientError.malformedResponse(responseBody: jsonResponse.result.value))
+                    completion(nil, ANCClientError.malformedResponse(responseBody: jsonResponse.result.value))
                     return
             }
             
@@ -261,11 +266,11 @@ open class AncileStudyServerClient: NSObject {
             //check for lower level errors
             if let error = jsonResponse.result.error as? NSError {
                 if error.code == NSURLErrorNotConnectedToInternet {
-                    completion(false, AncileStudyServerClientError.unreachableError(underlyingError: error))
+                    completion(false, ANCClientError.unreachableError(underlyingError: error))
                     return
                 }
                 else {
-                    completion(false, AncileStudyServerClientError.otherError(underlyingError: error))
+                    completion(false, ANCClientError.otherError(underlyingError: error))
                     return
                 }
             }
@@ -275,8 +280,8 @@ open class AncileStudyServerClient: NSObject {
         
     }
     
-    open func withdrawConsent(token: String, completion: @escaping ((Bool, Error?) -> ())) {
-        
-    }
+//    open func withdrawConsent(token: String, completion: @escaping ((Bool, Error?) -> ())) {
+//        
+//    }
     
 }

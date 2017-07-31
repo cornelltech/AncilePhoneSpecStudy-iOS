@@ -11,7 +11,7 @@ import ResearchSuiteExtensions
 
 open class ANCOpenURLManager: NSObject {
     
-    static public let URLScheme: String = "ancile3ec3082ca348453caa716cc0ec41791e"
+    
     
     var openURLDelegates: [RSOpenURLDelegate]
     

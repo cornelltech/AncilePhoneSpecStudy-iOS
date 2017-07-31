@@ -23,7 +23,7 @@ open class ANCAncileAuthStepGenerator: RSRedirectStepGenerator {
     
     open override func getDelegate(helper: RSTBTaskBuilderHelper) -> RSRedirectStepDelegate! {
         
-        guard let ancileClientProvider = helper.stateHelper as? AncileClientProvider,
+        guard let ancileClientProvider = helper.stateHelper as? ANCClientProvider,
             let ancileClient = ancileClientProvider.getAncileClient() else {
                 return nil
         }
@@ -43,7 +43,7 @@ open class ANCCoreAuthStepGenerator: RSRedirectStepGenerator {
     }
     
     open override func getDelegate(helper: RSTBTaskBuilderHelper) -> RSRedirectStepDelegate! {
-        guard let ancileClientProvider = helper.stateHelper as? AncileClientProvider,
+        guard let ancileClientProvider = helper.stateHelper as? ANCClientProvider,
             let ancileClient = ancileClientProvider.getAncileClient() else {
                 return nil
         }

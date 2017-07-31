@@ -10,10 +10,11 @@ import UIKit
 import OhmageOMHSDK
 import ResearchSuiteTaskBuilder
 import ResearchSuiteAppFramework
+import AncileStudyServerClient
 
-open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, OhmageManagerProvider, AncileClientProvider {
+open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, OhmageManagerProvider, ANCClientProvider, ANCClientCredentialStore {
     
-    static public let kAncileAuthToken = "ancile_study_server_auth_token"
+    
     static public let kConsentDocURL = "ancile_study_consent_doc_URL"
     static public let kLastSurveyCompletionTime = "ancile_study_last_survey_completion_time"
     static public let kLastSurveyLaunchTime = "ancile_study_last_survey_launch_time"
@@ -38,7 +39,7 @@ open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, Ohm
         return (UIApplication.shared.delegate as? AppDelegate)?.ohmageManager
     }
     
-    public func getAncileClient() -> AncileStudyServerClient? {
+    public func getAncileClient() -> ANCClient? {
         return (UIApplication.shared.delegate as? AppDelegate)?.ancileClient
     }
     

@@ -11,10 +11,27 @@ import ResearchSuiteExtensions
 
 public class ANCCoreAuthDelegate: NSObject, RSRedirectStepDelegate {
 
-    private weak var client: AncileStudyServerClient!
+    public static func getQueryStringParameter(url: String, param: String) -> String? {
+        guard let url = URLComponents(string: url) else { return nil }
+        
+        return url.queryItems?.first(where: { $0.name == param })?.value
+    }
+    
+    public static func safeOpenURL(url: URL) {
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            // Fallback on earlier versions
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    private var urlScheme: String
+    private weak var client: ANCClient!
     private var authCompletion: ((Error?) -> ())? = nil
     
-    init(client: AncileStudyServerClient) {
+    init(client: ANCClient, urlScheme: String) {
+        self.urlScheme = urlScheme
         super.init()
         self.client = client
     }
@@ -43,7 +60,7 @@ public class ANCCoreAuthDelegate: NSObject, RSRedirectStepDelegate {
             
             if let urlString = urlString,
                 let url: URL = URL(string: urlString) {
-                ANCOpenURLManager.safeOpenURL(url: url)
+                ANCCoreAuthDelegate.safeOpenURL(url: url)
                 return
             }
             else {
@@ -57,7 +74,7 @@ public class ANCCoreAuthDelegate: NSObject, RSRedirectStepDelegate {
         
         //check to see if this matches the expected format
         //ancile3ec3082ca348453caa716cc0ec41791e://auth/ancile/callback?code={CODE}
-        let pattern = "^\(ANCOpenURLManager.URLScheme)://auth/ancile/confirm_core_auth"
+        let pattern = "^\(self.urlScheme)://auth/ancile/confirm_core_auth"
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         
         guard let _ = regex.firstMatch(
@@ -67,7 +84,7 @@ public class ANCCoreAuthDelegate: NSObject, RSRedirectStepDelegate {
                 return false
         }
         
-        if let successString = ANCOpenURLManager.getQueryStringParameter(url: url.absoluteString, param: "success") {
+        if let successString = ANCCoreAuthDelegate.getQueryStringParameter(url: url.absoluteString, param: "success") {
             
             self.authCompletion?(nil)
             return true

@@ -1,5 +1,5 @@
 //
-//  AncileStudyServerClientError.swift
+//  ANCClientError.swift
 //  AncilePhoneSpecStudy
 //
 //  Created by James Kizer on 6/22/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public enum AncileStudyServerClientError: Error {
+public enum ANCClientError: Error {
     
     //our errors
     
@@ -46,7 +46,7 @@ public enum AncileStudyServerClientError: Error {
 
 }
 
-extension AncileStudyServerClientError {
+extension ANCClientError {
     
     /// The `underlyingError` associated with the error.
     public var underlyingError: NSError? {

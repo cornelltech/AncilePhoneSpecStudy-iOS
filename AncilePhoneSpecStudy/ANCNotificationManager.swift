@@ -94,7 +94,7 @@ open class ANCNotificationManager: NSObject {
             
             componentArray.forEach { components in
                 
-                let identifier = kWeeklyNotificationIdentifer + ".\(components.hour)"
+                let identifier = kWeeklyNotificationIdentifer + ".\(components.hour!)"
                 setNotification(identifier: identifier, components: components)
                 
             }
