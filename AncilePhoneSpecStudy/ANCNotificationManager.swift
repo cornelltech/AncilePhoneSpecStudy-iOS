@@ -34,31 +34,23 @@ open class ANCNotificationManager: NSObject {
         
     }
     
-    static public func setNotifications() {
+    static private func getNextDateFromComponents(components: DateComponents) -> Date? {
+        return Calendar(identifier: .gregorian).nextDate(after: Date(), matching: components, matchingPolicy: .nextTime)
+    }
+    
+    static public func setNotification(identifier: String, components: DateComponents) {
         
-        //always clear notification before setting
-        cancelNotifications()
-
         if #available(iOS 10, *) {
-            let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-                // Enable or disable features based on authorization
-            }
             
+            let center = UNUserNotificationCenter.current()
+            
+            // Enable or disable features based on authorization
             let content = UNMutableNotificationContent()
             content.title = kWeeklyNotificationTitle
             content.body = kWeeklyNotificationBody
             
-//            var components = DateComponents()
-//            ///matches next monday morning at 9am
-//            components.weekday = 2
-//            components.hour = 9
-//            
-//            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
-            
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 24*60*60.0, repeats: true)
-            
-            let request = UNNotificationRequest(identifier: kWeeklyNotificationIdentifer, content: content, trigger: trigger)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
+            let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
             
             center.add(request) { (error : Error?) in
                 if let theError = error {
@@ -68,7 +60,7 @@ open class ANCNotificationManager: NSObject {
         }
         else {
             
-            guard let initialFireDate = self.computeFireDate() else {
+            guard let fireDate = self.getNextDateFromComponents(components: components) else {
                 return
             }
             
@@ -76,12 +68,70 @@ open class ANCNotificationManager: NSObject {
             UIApplication.shared.registerUserNotificationSettings(settings)
             
             let notification = UILocalNotification()
-            notification.userInfo = ["identifier": kWeeklyNotificationIdentifer]
-            notification.fireDate = initialFireDate
-//            notification.repeatInterval = NSCalendar.Unit.weekOfYear
+            notification.userInfo = ["identifier": identifier]
+            notification.fireDate = fireDate
+            //            notification.repeatInterval = NSCalendar.Unit.weekOfYear
             notification.repeatInterval = NSCalendar.Unit.day
             notification.alertBody = "\(kWeeklyNotificationTitle), \(kWeeklyNotificationBody)"
             UIApplication.shared.scheduleLocalNotification(notification)
+            
+        }
+        
+    }
+    
+    static public func setNotifications() {
+        
+        //always clear notification before setting
+        cancelNotifications()
+        
+        let setNotificationsClosure = {
+            let range = 0..<24
+            let componentArray = range.map({ (hour) -> DateComponents in
+                var components = DateComponents()
+                components.hour = hour
+                return components
+            })
+            
+            componentArray.forEach { components in
+                
+                let identifier = kWeeklyNotificationIdentifer + ".\(components.hour)"
+                setNotification(identifier: identifier, components: components)
+                
+            }
+        }
+
+        if #available(iOS 10, *) {
+            
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+                setNotificationsClosure()
+            }
+        }
+        else {
+            setNotificationsClosure()
+        }
+        
+    }
+    
+    static public func cancelNotification(identifier: String) {
+        
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+        }
+        else {
+            if let scheduledNotifications = UIApplication.shared.scheduledLocalNotifications {
+                let notificationsToCancel = scheduledNotifications.filter({ (notification) -> Bool in
+                    guard let userInfo = notification.userInfo as? [String: AnyObject],
+                        let userInfoIdentifier = userInfo["identifier"] as? String,
+                        userInfoIdentifier == identifier else {
+                            return false
+                    }
+                    return true
+                })
+                notificationsToCancel.forEach({ (notification) in
+                    UIApplication.shared.cancelLocalNotification(notification)
+                })
+            }
         }
         
     }

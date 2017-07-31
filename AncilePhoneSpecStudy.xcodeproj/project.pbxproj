@@ -27,7 +27,6 @@
 		E24AAB121F1D968D003C276D /* ANCAuthStepGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB111F1D968D003C276D /* ANCAuthStepGenerator.swift */; };
 		E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */; };
 		E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */; };
-		E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */; };
 		E2E4107D1F14224900FF8FA6 /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E4107C1F14224900FF8FA6 /* activities.json */; };
 		E2E793BF1F1FB37E00E4A947 /* OMHClient.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */; };
 		E2E793E41F21377C00E4A947 /* weeklySurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E793E31F21377C00E4A947 /* weeklySurvey.json */; };
@@ -87,7 +86,6 @@
 		E24AAB111F1D968D003C276D /* ANCAuthStepGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCAuthStepGenerator.swift; sourceTree = "<group>"; };
 		E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivityManager.swift; sourceTree = "<group>"; };
 		E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivity.swift; sourceTree = "<group>"; };
-		E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTestViewController.swift; sourceTree = "<group>"; };
 		E2E4107C1F14224900FF8FA6 /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activities.json; path = config/json/activities.json; sourceTree = "<group>"; };
 		E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMHClient.plist; sourceTree = "<group>"; };
 		E2E793E31F21377C00E4A947 /* weeklySurvey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = weeklySurvey.json; path = config/json/weeklySurvey.json; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 				E2F44CB01F2AAA5A00BEFAA8 /* ANCNotificationManager.swift */,
 				E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */,
 				E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */,
-				E2E410781F141EFD00FF8FA6 /* AuthTestViewController.swift */,
 				E21D116B1F140ED400351E7A /* ANCStore.swift */,
 				E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */,
 				E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */,
@@ -534,7 +531,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2E410791F141EFD00FF8FA6 /* AuthTestViewController.swift in Sources */,
 				E21FE5C41EFC6424006F6B60 /* AncileStudyServerClient.swift in Sources */,
 				E21D116C1F140ED400351E7A /* ANCStore.swift in Sources */,
 				E24AAB101F1D9184003C276D /* ANCCoreAuthDelegate.swift in Sources */,
