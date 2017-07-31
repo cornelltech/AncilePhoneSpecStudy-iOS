@@ -364,7 +364,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
             YADLSpotStepGenerator(),
             ANCAncileAuthStepGenerator(),
             ANCCoreAuthStepGenerator(),
-            CTFOhmageRedirectLoginStepGenerator()
+            CTFOhmageRedirectLoginStepGenerator(),
+            RSTBVisualConsentStepGenerator(),
+            RSTBConsentReviewStepGenerator()
         ]
     }
     

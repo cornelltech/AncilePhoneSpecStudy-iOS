@@ -20,6 +20,27 @@
       }
     },
     {
+      "identifier": "consent",
+      "type": "activity",
+      "element": {
+        "type": "elementList",
+        "identifier": "consentTask",
+        "elements": [
+          {
+            "identifier": "visualConsentStep",
+            "type": "visualConsent",
+            "consentDocumentFilename": "consentDocument"
+          },
+          {
+            "identifier": "consentReviewStep",
+            "type": "consentReview",
+            "consentDocumentFilename": "consentDocument",
+            "reasonForConsent": "You need to consent!"
+          }
+        ]
+      }
+    },
+    {
       "identifier": "authFlow",
       "type": "activity",
       "element": {

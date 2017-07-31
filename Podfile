@@ -15,7 +15,7 @@ target 'AncilePhoneSpecStudy' do
   pod "sdlrkx"
   pod "ResearchKit", '1.4.1'
   # pod "ResearchSuiteTaskBuilder"
-  pod "ResearchSuiteTaskBuilder",:path => '~/Developer/ResearchSuite/iOS/ResearchSuiteTaskBuilder-ios'
+  pod "ResearchSuiteTaskBuilder", '~> 0.7'
   pod "ResearchSuiteResultsProcessor"
   pod "Alamofire", '~> 4'
   pod "ResearchSuiteAppFramework"

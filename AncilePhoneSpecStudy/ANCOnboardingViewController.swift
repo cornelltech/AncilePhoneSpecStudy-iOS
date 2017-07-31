@@ -72,8 +72,15 @@ open class ANCOnboardingViewController: UIViewController {
         }
         else if !appDelegate.isConsented {
             
-            guard let (task, consentDoc) = self.consentTask() else {
+            guard let task = AppDelegate.appDelegate.activityManager.task(for: "consent") else {
                 return
+            }
+            
+            guard let consentDocumentJSON = AppDelegate.appDelegate.taskBuilder.helper.getJson(forFilename: "consentDocument") as? JSON,
+                let consentDocType: String = "type" <~~ consentDocumentJSON,
+                let consentDocument = AppDelegate.appDelegate.taskBuilder.generateConsentDocument(
+                    type: consentDocType, jsonObject: consentDocumentJSON, helper: AppDelegate.appDelegate.taskBuilder.helper) else {
+                        return
             }
             
             let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
@@ -91,9 +98,9 @@ open class ANCOnboardingViewController: UIViewController {
                         return
                 }
                 
-                consentSignature.apply(to: consentDoc)
+                consentSignature.apply(to: consentDocument)
                 
-                consentDoc.makePDF(completionHandler: { (data, error) in
+                consentDocument.makePDF(completionHandler: { (data, error) in
                     
                     if error == nil {
                         guard let pdfData = data,
