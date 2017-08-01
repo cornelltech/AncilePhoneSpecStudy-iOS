@@ -16,24 +16,6 @@ open class ANCNotificationManager: NSObject {
     static let kWeeklyNotificationTitle: String = "Hey 👋"
     static let kWeeklyNotificationBody: String = "It's time to take your weekly survey!"
 
-    //the next monday at 9am
-    static private func computeFireDate() -> Date? {
-        
-        let calendar = Calendar(identifier: .gregorian)
-        debugPrint(calendar.weekdaySymbols)
-        
-        let now = Date()
-        var components = DateComponents()
-        ///matches next monday morning at 9am
-//        components.weekday = 2
-        components.hour = 9
-        
-        return calendar.nextDate(after: now, matching: components, matchingPolicy: .nextTime)
-        
-//        return Date().addingTimeInterval(60.0)
-        
-    }
-    
     static private func getNextDateFromComponents(components: DateComponents) -> Date? {
         return Calendar(identifier: .gregorian).nextDate(after: Date(), matching: components, matchingPolicy: .nextTime)
     }
@@ -48,6 +30,7 @@ open class ANCNotificationManager: NSObject {
             let content = UNMutableNotificationContent()
             content.title = kWeeklyNotificationTitle
             content.body = kWeeklyNotificationBody
+            content.sound = UNNotificationSound.default()
             
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
             let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
@@ -85,25 +68,21 @@ open class ANCNotificationManager: NSObject {
         cancelNotifications()
         
         let setNotificationsClosure = {
-            let range = 0..<24
-            let componentArray = range.map({ (hour) -> DateComponents in
-                var components = DateComponents()
-                components.hour = hour
-                return components
-            })
             
-            componentArray.forEach { components in
-                
-                let identifier = kWeeklyNotificationIdentifer + ".\(components.hour!)"
-                setNotification(identifier: identifier, components: components)
-                
-            }
+            let now = Date()
+            var components = DateComponents()
+            ///matches next monday morning at 9am
+            //        components.weekday = 2
+            components.hour = 9
+            
+            setNotification(identifier: kWeeklyNotificationIdentifer, components: components)
+
         }
 
         if #available(iOS 10, *) {
             
             let center = UNUserNotificationCenter.current()
-            center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
                 setNotificationsClosure()
             }
         }
@@ -139,24 +118,29 @@ open class ANCNotificationManager: NSObject {
     static public func cancelNotifications() {
         
         if #available(iOS 10, *) {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [kWeeklyNotificationIdentifer])
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         }
         else {
             if let scheduledNotifications = UIApplication.shared.scheduledLocalNotifications {
-                let notificationsToCancel = scheduledNotifications.filter({ (notification) -> Bool in
-                    guard let userInfo = notification.userInfo as? [String: AnyObject],
-                        let identifer = userInfo["identifier"] as? String,
-                        identifer == kWeeklyNotificationIdentifer else {
-                            return false
-                    }
-                    return true
-                })
-                notificationsToCancel.forEach({ (notification) in
+                scheduledNotifications.forEach({ (notification) in
                     UIApplication.shared.cancelLocalNotification(notification)
                 })
             }
         }
         
+    }
+    
+    static public func printPendingNotifications() {
+        if #available(iOS 10, *) {
+            UNUserNotificationCenter.current().getPendingNotificationRequests(completionHandler: { (notificationRequests) in
+                notificationRequests.forEach { debugPrint($0) }
+            })
+        }
+        else {
+            if let scheduledNotifications = UIApplication.shared.scheduledLocalNotifications {
+                scheduledNotifications.forEach { debugPrint($0) }
+            }
+        }
     }
 
 }

@@ -183,6 +183,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
             } catch let error {
                 print("Got error \(error) when resetting keychain")
             }
+            ANCNotificationManager.cancelNotifications()
         }
         
         self.store = ANCStore()
@@ -219,6 +220,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         self.activityManager = ANCActivityManager(activityFilename: "activities", taskBuilder: self.taskBuilder)
         
         self.showViewController(animated: false)
+        
+        ANCNotificationManager.printPendingNotifications()  
         
         return true
     }
