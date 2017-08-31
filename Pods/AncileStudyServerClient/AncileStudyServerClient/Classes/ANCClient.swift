@@ -27,6 +27,7 @@ open class ANCClient: NSObject {
     }
     
     let baseURL: String
+    let ancileClientID: String
     let store: ANCClientCredentialStore 
     let dispatchQueue: DispatchQueue?
     public var ancileAuthDelegate: ANCAncileAuthDelegate!
@@ -50,8 +51,9 @@ open class ANCClient: NSObject {
         }
     }
     
-    public init(baseURL: String, mobileURLScheme: String, store: ANCClientCredentialStore, dispatchQueue: DispatchQueue? = nil) {
+    public init(baseURL: String, ancileClientID: String, mobileURLScheme: String, store: ANCClientCredentialStore, dispatchQueue: DispatchQueue? = nil) {
         self.baseURL = baseURL
+        self.ancileClientID = ancileClientID
         self.store = store
         self._authToken = store.get(key: ANCClient.kAncileAuthToken) as? String
         self.dispatchQueue = dispatchQueue
@@ -62,7 +64,7 @@ open class ANCClient: NSObject {
     }
 
     public var authURL: URL? {
-        return URL(string: "\(self.baseURL)/accounts/google/login")
+        return URL(string: "\(self.baseURL)/login/\(self.ancileClientID)")
     }
     
     open func processAuthResponse(isRefresh: Bool, completion: @escaping ((SignInResponse?, Error?) -> ())) -> ((DataResponse<Any>) -> ()) {
@@ -164,7 +166,7 @@ open class ANCClient: NSObject {
 
     open func getCoreLink(authToken: String, completion: @escaping ((String?, Error?) -> ())) {
         
-        let urlString = "\(self.baseURL)/temporary_core_link"
+        let urlString = "\(self.baseURL)/temporary_core_link/\(self.ancileClientID)"
         let headers = ["Authorization": "Token \(authToken)"]
         
         let request = Alamofire.request(
@@ -247,35 +249,43 @@ open class ANCClient: NSObject {
         self.authToken = nil
     }
     
-    open func postConsent(token: String, completion: @escaping ((Bool, Error?) -> ())) {
+    open func postConsent(token: String, fileName: String, fileURL: URL, completion: @escaping ((Bool, Error?) -> ())) {
         
-        let urlString = "\(self.baseURL)/consent"
+        let urlString = "\(self.baseURL)/consent/\(self.ancileClientID)"
         
         let headers = ["Authorization": "Token \(token)"]
         
-        let request = Alamofire.request(
-            urlString,
-            method: .post,
-            headers: headers)
-        
-        debugPrint(headers)
-        
-        request.responseJSON(queue: self.dispatchQueue) { (jsonResponse) in
+        let request = Alamofire.upload(multipartFormData: { (multipartFormData) in
             
-            debugPrint(jsonResponse)
-            //check for lower level errors
-            if let error = jsonResponse.result.error as? NSError {
-                if error.code == NSURLErrorNotConnectedToInternet {
-                    completion(false, ANCClientError.unreachableError(underlyingError: error))
-                    return
+            multipartFormData.append(fileURL, withName: "signed_document", fileName: fileName, mimeType: "application/pdf")
+            
+        }, to: urlString, headers: headers) { (encodingResult) in
+            switch encodingResult {
+            case .success(let upload, _, _):
+                
+                debugPrint(upload)
+                debugPrint(upload.request)
+                upload.responseJSON(queue: self.dispatchQueue) { (jsonResponse) in
+                    
+                    debugPrint(jsonResponse)
+                    //check for lower level errors
+                    if let error = jsonResponse.result.error as? NSError {
+                        if error.code == NSURLErrorNotConnectedToInternet {
+                            completion(false, ANCClientError.unreachableError(underlyingError: error))
+                            return
+                        }
+                        else {
+                            completion(false, ANCClientError.otherError(underlyingError: error))
+                            return
+                        }
+                    }
+                    
+                    completion(true, nil)            
                 }
-                else {
-                    completion(false, ANCClientError.otherError(underlyingError: error))
-                    return
-                }
+                
+            case .failure(let encodingError):
+                completion(false, encodingError)
             }
-            
-            completion(true, nil)            
         }
         
     }

@@ -60,6 +60,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         
     }
     
+    func initializeAncile(credentialsStore: ANCClientCredentialStore, urlScheme: String) -> ANCClient {
+        
+        //load Ancile client application credentials from AncileClient.plist
+        guard let file = Bundle.main.path(forResource: "AncileClient", ofType: "plist") else {
+            fatalError("Could not initialze AncileClient")
+        }
+        
+        
+        let omhClientDetails = NSDictionary(contentsOfFile: file)
+        
+        guard let baseURL = omhClientDetails?["AncileBaseURL"] as? String,
+            let clientID = omhClientDetails?["AncileStudyID"] as? String else {
+                fatalError("Could not initialze AncileClient")
+        }
+        
+        return ANCClient(
+            baseURL: baseURL,
+            ancileClientID: clientID,
+            mobileURLScheme: urlScheme,
+            store: credentialsStore
+        )
+        
+    }
+    
     
     static var appDelegate: AppDelegate! {
         return UIApplication.shared.delegate! as! AppDelegate
@@ -188,11 +212,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         
         self.store = ANCStore()
         
-        self.ancileClient = ANCClient(
-            baseURL: "https://ancile.cornelltech.io",
-            mobileURLScheme: AppDelegate.URLScheme,
-            store: self.store
-        )
+//        self.ancileClient = ANCClient(
+//            baseURL: "https://ancile.cornelltech.io",
+//            mobileURLScheme: AppDelegate.URLScheme,
+//            store: self.store
+//        )
+        
+        self.ancileClient = self.initializeAncile(credentialsStore: self.store, urlScheme: AppDelegate.URLScheme)
         
         self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
         

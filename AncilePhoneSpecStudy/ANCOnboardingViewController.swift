@@ -159,9 +159,10 @@ open class ANCOnboardingViewController: UIViewController {
                     }
                     
                     if let authToken = appDelegate.ancileClient.authToken,
-                            appDelegate.isConsented {
+                            appDelegate.isConsented,
+                        let consentDocURL = AppDelegate.appDelegate.store.consentDocURL {
                         
-                        appDelegate.ancileClient.postConsent(token: authToken, completion: { (consented, error) in
+                        appDelegate.ancileClient.postConsent(token: authToken, fileName: "dont_care", fileURL: consentDocURL, completion: { (consented, error) in
                             self?.dismiss(animated: true, completion: {
                                 self?.launchActivity()
                             })
@@ -192,46 +193,5 @@ open class ANCOnboardingViewController: UIViewController {
         
         
     }
-    
-    func consentTask() -> (ORKTask, ORKConsentDocument)? {
-//        let consentDocument = ANCConsentDocument()
-        
-        guard let consentDocumentJSON = AppDelegate.appDelegate.taskBuilder.helper.getJson(forFilename: "consentDocument") as? JSON,
-            let consentDocType: String = "type" <~~ consentDocumentJSON,
-            let consentDocument = AppDelegate.appDelegate.taskBuilder.generateConsentDocument(
-                type: consentDocType, jsonObject: consentDocumentJSON, helper: AppDelegate.appDelegate.taskBuilder.helper) else {
-                    return nil
-        }
-        
-        let visualConsentStep = ORKVisualConsentStep(identifier: "visualConsentStep", document: consentDocument)
-        
-        guard let signature = consentDocument.signatures?.first else {
-            return nil
-        }
-        
-        let reviewConsentStep = ORKConsentReviewStep(identifier: "consentReviewStep", signature: signature, in: consentDocument)
-        
-        // In a real application, you would supply your own localized text.
-        reviewConsentStep.text = "Consent Review"
-        reviewConsentStep.reasonForConsent = "You need to consent"
-        
-        return (ORKOrderedTask(identifier: "consentTask", steps: [
-            visualConsentStep,
-            reviewConsentStep
-            ]), consentDocument)
-    }
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

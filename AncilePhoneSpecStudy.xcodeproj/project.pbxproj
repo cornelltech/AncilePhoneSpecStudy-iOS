@@ -20,6 +20,7 @@
 		E21FE59C1EFC092C006F6B60 /* AncilePhoneSpecStudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE59B1EFC092C006F6B60 /* AncilePhoneSpecStudyTests.swift */; };
 		E21FE5A71EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */; };
 		E24AAB0C1F1D84FD003C276D /* ANCOpenURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */; };
+		E2C1EA171F4F776300D67BF6 /* AncileClient.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2C1EA161F4F776300D67BF6 /* AncileClient.plist */; };
 		E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */; };
 		E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */; };
 		E2E4107D1F14224900FF8FA6 /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E4107C1F14224900FF8FA6 /* activities.json */; };
@@ -74,6 +75,7 @@
 		E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AncilePhoneSpecStudyUITests.swift; sourceTree = "<group>"; };
 		E21FE5A81EFC092C006F6B60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOpenURLManager.swift; sourceTree = "<group>"; };
+		E2C1EA161F4F776300D67BF6 /* AncileClient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AncileClient.plist; sourceTree = "<group>"; };
 		E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivityManager.swift; sourceTree = "<group>"; };
 		E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivity.swift; sourceTree = "<group>"; };
 		E2E4107C1F14224900FF8FA6 /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activities.json; path = config/json/activities.json; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				E21FE58F1EFC092C006F6B60 /* LaunchScreen.storyboard */,
 				E21FE5921EFC092C006F6B60 /* Info.plist */,
 				E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */,
+				E2C1EA161F4F776300D67BF6 /* AncileClient.plist */,
 			);
 			path = AncilePhoneSpecStudy;
 			sourceTree = "<group>";
@@ -354,6 +357,7 @@
 				E2E793BF1F1FB37E00E4A947 /* OMHClient.plist in Resources */,
 				E2E793E41F21377C00E4A947 /* weeklySurvey.json in Resources */,
 				E21FE58C1EFC092C006F6B60 /* Main.storyboard in Resources */,
+				E2C1EA171F4F776300D67BF6 /* AncileClient.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

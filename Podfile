@@ -20,7 +20,7 @@ target 'AncilePhoneSpecStudy' do
   pod "Alamofire", '~> 4'
   pod "ResearchSuiteAppFramework"
   pod "ResearchSuiteExtensions", '~> 0.2'
-  pod "AncileStudyServerClient", '~> 0.1'
+  pod "AncileStudyServerClient", '~> 0.2'
   # pod "AncileStudyServerClient", :path => '~/Developer/Foundry/iOS/Ancile/AncileStudyServerClient'
 
   target 'AncilePhoneSpecStudyTests' do
