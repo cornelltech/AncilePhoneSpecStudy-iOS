@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>AncileBaseURL</key>
-	<string>https://ancile.cornelltech.io</string>
+	<string>https://studies.ancile.cornelltech.io</string>
 	<key>AncileStudyID</key>
 	<string>phonespec</string>
 </dict>

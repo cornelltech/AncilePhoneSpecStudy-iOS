@@ -13,12 +13,12 @@ open class RSQuestionTableViewController: ORKStepViewController, UITableViewData
 //, UITableViewDataSource, UITableViewDelegate {
 
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textLabel: UILabel!
+    @IBOutlet public weak var titleLabel: UILabel!
+    @IBOutlet public weak var textLabel: UILabel!
     @IBOutlet weak var topPaddingView: UIView!
     @IBOutlet weak var bottomPaddingView: UIView!
-    @IBOutlet weak var skipButton: UIButton!
-    @IBOutlet weak var continueButton: RSBorderedButton!
+    @IBOutlet public weak var skipButton: UIButton!
+    @IBOutlet public weak var continueButton: RSBorderedButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIStackView!
     @IBOutlet weak var footerContainer: UIView!
