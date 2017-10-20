@@ -74,7 +74,7 @@
 
         ],
         "ResearchSuiteResultsProcessor": [
-
+          "~> 0.6"
         ]
       }
     }
