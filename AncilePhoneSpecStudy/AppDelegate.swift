@@ -18,8 +18,6 @@ import AncileStudyServerClient
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
-    
-    static public let URLScheme: String = "ancile3ec3082ca348453caa716cc0ec41791e"
 
     var window: UIWindow?
     var ancileClient: ANCClient!
@@ -60,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         
     }
     
-    func initializeAncile(credentialsStore: ANCClientCredentialStore, urlScheme: String) -> ANCClient {
+    func initializeAncile(credentialsStore: ANCClientCredentialStore) -> ANCClient {
         
         //load Ancile client application credentials from AncileClient.plist
         guard let file = Bundle.main.path(forResource: "AncileClient", ofType: "plist") else {
@@ -71,7 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         let omhClientDetails = NSDictionary(contentsOfFile: file)
         
         guard let baseURL = omhClientDetails?["AncileBaseURL"] as? String,
-            let clientID = omhClientDetails?["AncileStudyID"] as? String else {
+            let clientID = omhClientDetails?["AncileStudyID"] as? String,
+            let urlScheme = omhClientDetails?["AncileMobileURLScheme"] as? String else {
                 fatalError("Could not initialze AncileClient")
         }
         
@@ -128,6 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
     
     var isEligible: Bool {
         return self.store.isEligible
+    }
+    
+    var notificationTimeSet: Bool {
+        return self.store.notificationTime != nil
     }
     
     func getQueryStringParameter(url: String, param: String) -> String? {
@@ -212,13 +215,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
         
         self.store = ANCStore()
         
-//        self.ancileClient = ANCClient(
-//            baseURL: "https://ancile.cornelltech.io",
-//            mobileURLScheme: AppDelegate.URLScheme,
-//            store: self.store
-//        )
-        
-        self.ancileClient = self.initializeAncile(credentialsStore: self.store, urlScheme: AppDelegate.URLScheme)
+        self.ancileClient = self.initializeAncile(credentialsStore: self.store)
         
         self.ohmageManager = self.initializeOhmage(credentialsStore: self.store)
         
@@ -444,11 +441,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ORKPasscodeDelegate {
     
     open class var resultsTransformers: [RSRPFrontEndTransformer.Type] {
         return [
-            CTFBARTSummaryResultsTransformer.self,
-            CTFDelayDiscountingRawResultsTransformer.self,
-            YADLSpotRaw.self,
-            YADLFullRaw.self,
-            ANCWeeklySurveyResult.self
+            ORBEDefaultResult.self
         ]
     }
     

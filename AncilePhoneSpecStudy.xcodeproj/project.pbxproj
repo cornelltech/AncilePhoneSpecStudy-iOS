@@ -20,14 +20,13 @@
 		E21FE59C1EFC092C006F6B60 /* AncilePhoneSpecStudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE59B1EFC092C006F6B60 /* AncilePhoneSpecStudyTests.swift */; };
 		E21FE5A71EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */; };
 		E24AAB0C1F1D84FD003C276D /* ANCOpenURLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */; };
+		E27F36671F95369E00299749 /* ANCSettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27F36661F95369E00299749 /* ANCSettingsTableViewController.swift */; };
 		E2C1EA171F4F776300D67BF6 /* AncileClient.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2C1EA161F4F776300D67BF6 /* AncileClient.plist */; };
 		E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */; };
 		E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */; };
 		E2E4107D1F14224900FF8FA6 /* activities.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E4107C1F14224900FF8FA6 /* activities.json */; };
 		E2E793BF1F1FB37E00E4A947 /* OMHClient.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */; };
 		E2E793E41F21377C00E4A947 /* weeklySurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E793E31F21377C00E4A947 /* weeklySurvey.json */; };
-		E2E793E61F213A2500E4A947 /* ANCWeeklySurveyResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */; };
-		E2E793E81F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */; };
 		E2F44CAC1F2A92E600BEFAA8 /* ANCHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F44CAB1F2A92E600BEFAA8 /* ANCHomeViewController.swift */; };
 		E2F44CAE1F2AA60000BEFAA8 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2F44CAD1F2AA60000BEFAA8 /* HealthKit.framework */; };
 		E2F44CB11F2AAA5A00BEFAA8 /* ANCNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F44CB01F2AAA5A00BEFAA8 /* ANCNotificationManager.swift */; };
@@ -75,14 +74,13 @@
 		E21FE5A61EFC092C006F6B60 /* AncilePhoneSpecStudyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AncilePhoneSpecStudyUITests.swift; sourceTree = "<group>"; };
 		E21FE5A81EFC092C006F6B60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCOpenURLManager.swift; sourceTree = "<group>"; };
+		E27F36661F95369E00299749 /* ANCSettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ANCSettingsTableViewController.swift; sourceTree = "<group>"; };
 		E2C1EA161F4F776300D67BF6 /* AncileClient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AncileClient.plist; sourceTree = "<group>"; };
 		E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivityManager.swift; sourceTree = "<group>"; };
 		E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCActivity.swift; sourceTree = "<group>"; };
 		E2E4107C1F14224900FF8FA6 /* activities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = activities.json; path = config/json/activities.json; sourceTree = "<group>"; };
 		E2E793BE1F1FB37E00E4A947 /* OMHClient.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = OMHClient.plist; sourceTree = "<group>"; };
 		E2E793E31F21377C00E4A947 /* weeklySurvey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = weeklySurvey.json; path = config/json/weeklySurvey.json; sourceTree = "<group>"; };
-		E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCWeeklySurveyResult.swift; sourceTree = "<group>"; };
-		E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ANCWeeklySurveyResult+OMHDatapoint.swift"; sourceTree = "<group>"; };
 		E2F44CAB1F2A92E600BEFAA8 /* ANCHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANCHomeViewController.swift; sourceTree = "<group>"; };
 		E2F44CAD1F2AA60000BEFAA8 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		E2F44CAF1F2AA60000BEFAA8 /* AncilePhoneSpecStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AncilePhoneSpecStudy.entitlements; sourceTree = "<group>"; };
@@ -158,15 +156,14 @@
 				E2F44CAF1F2AA60000BEFAA8 /* AncilePhoneSpecStudy.entitlements */,
 				E2E4107A1F14221E00FF8FA6 /* config */,
 				E21FE5861EFC092C006F6B60 /* AppDelegate.swift */,
-				E2E793E51F213A2500E4A947 /* ANCWeeklySurveyResult.swift */,
 				E2F44CAB1F2A92E600BEFAA8 /* ANCHomeViewController.swift */,
 				E2F44CB01F2AAA5A00BEFAA8 /* ANCNotificationManager.swift */,
-				E2E793E71F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift */,
 				E21D11691F1409F200351E7A /* ANCOnboardingViewController.swift */,
 				E21D116B1F140ED400351E7A /* ANCStore.swift */,
 				E2E410741F141AF500FF8FA6 /* ANCActivityManager.swift */,
 				E2E410761F141BAE00FF8FA6 /* ANCActivity.swift */,
 				E24AAB0B1F1D84FD003C276D /* ANCOpenURLManager.swift */,
+				E27F36661F95369E00299749 /* ANCSettingsTableViewController.swift */,
 				E21FE58A1EFC092C006F6B60 /* Main.storyboard */,
 				E21FE58D1EFC092C006F6B60 /* Assets.xcassets */,
 				E21FE58F1EFC092C006F6B60 /* LaunchScreen.storyboard */,
@@ -564,12 +561,11 @@
 				E2F44CB11F2AAA5A00BEFAA8 /* ANCNotificationManager.swift in Sources */,
 				E2F44CAC1F2A92E600BEFAA8 /* ANCHomeViewController.swift in Sources */,
 				E2E410751F141AF500FF8FA6 /* ANCActivityManager.swift in Sources */,
+				E27F36671F95369E00299749 /* ANCSettingsTableViewController.swift in Sources */,
 				E2E410771F141BAE00FF8FA6 /* ANCActivity.swift in Sources */,
 				E21FE5871EFC092C006F6B60 /* AppDelegate.swift in Sources */,
-				E2E793E81F213B8700E4A947 /* ANCWeeklySurveyResult+OMHDatapoint.swift in Sources */,
 				E21D116A1F1409F200351E7A /* ANCOnboardingViewController.swift in Sources */,
 				E24AAB0C1F1D84FD003C276D /* ANCOpenURLManager.swift in Sources */,
-				E2E793E61F213A2500E4A947 /* ANCWeeklySurveyResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

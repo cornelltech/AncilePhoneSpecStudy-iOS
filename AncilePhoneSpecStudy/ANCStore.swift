@@ -19,6 +19,8 @@ open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, Ohm
     static public let kLastSurveyCompletionTime = "ancile_study_last_survey_completion_time"
     static public let kLastSurveyLaunchTime = "ancile_study_last_survey_launch_time"
     static public let kEligible = "ancile_study_eligible"
+    static public let kPartcipantSince = "ancile_participant_since"
+    static public let kNotificationTime = "ancile_notification_time"
 
     public func valueInState(forKey: String) -> NSSecureCoding? {
         return self.get(key: forKey)
@@ -106,6 +108,34 @@ open class ANCStore: NSObject, OhmageOMHSDKCredentialStore, RSTBStateHelper, Ohm
         set {
             let number = NSNumber(booleanLiteral: newValue)
             self.set(value: number, key: ANCStore.kEligible)
+        }
+    }
+    
+    open var participantSince: Date? {
+        get {
+            return self.get(key: ANCStore.kPartcipantSince) as? Date
+        }
+        set {
+            if let date = newValue {
+                self.set(value: date as NSDate, key: ANCStore.kPartcipantSince)
+            }
+            else {
+                self.set(value: nil, key: ANCStore.kPartcipantSince)
+            }
+        }
+    }
+    
+    open var notificationTime: DateComponents? {
+        get {
+            return self.get(key: ANCStore.kNotificationTime) as? DateComponents
+        }
+        set {
+            if let dateComponents = newValue {
+                self.set(value: dateComponents as NSDateComponents, key: ANCStore.kNotificationTime)
+            }
+            else {
+                self.set(value: nil, key: ANCStore.kNotificationTime)
+            }
         }
     }
 }

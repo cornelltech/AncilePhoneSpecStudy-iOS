@@ -6,5 +6,7 @@
 	<string>https://studies.ancile.cornelltech.io</string>
 	<key>AncileStudyID</key>
 	<string>phonespec</string>
+	<key>AncileMobileURLScheme</key>
+	<string>ancile3ec3082ca348453caa716cc0ec41791e</string>
 </dict>
 </plist>

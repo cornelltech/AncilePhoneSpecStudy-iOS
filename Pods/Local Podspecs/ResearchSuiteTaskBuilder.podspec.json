@@ -1,6 +1,6 @@
 {
   "name": "ResearchSuiteTaskBuilder",
-  "version": "0.8.0",
+  "version": "0.10.0",
   "summary": "The ResearchSuite Task Builder is an easy and extensible way to create Tasks for ResearchKit.",
   "description": "Building cross-platform ResearchSuite applications is hard.\nThe ResearchSuite Task Builder makes it easier!",
   "homepage": "https://github.com/cornelltech/ResearchSuiteTaskBuilder-ios",
@@ -13,12 +13,15 @@
   },
   "source": {
     "git": "https://github.com/ResearchSuite/ResearchSuiteTaskBuilder-ios.git",
-    "tag": "0.8.0"
+    "tag": "0.10.0"
   },
   "platforms": {
     "ios": "9.0"
   },
   "source_files": "ResearchSuiteTaskBuilder/Classes/**/*",
+  "xcconfig": {
+    "SWIFT_VERSION": "4.0"
+  },
   "dependencies": {
     "Gloss": [
       "~> 1.1"

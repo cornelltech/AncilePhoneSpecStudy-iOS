@@ -184,10 +184,47 @@ open class ANCOnboardingViewController: UIViewController {
             })
             
         }
+            
+        else if !appDelegate.notificationTimeSet {
+            guard let task = AppDelegate.appDelegate.activityManager.task(for: "notificationTime") else {
+                return
+            }
+            
+            let tvc = RSAFTaskViewController(activityUUID: UUID(), task: task, taskFinishedHandler: { [weak self] (taskViewController, reason, error) in
+                
+                guard reason == ORKTaskViewControllerFinishReason.completed else {
+                    self?.dismiss(animated: true, completion: nil)
+                    return
+                }
+                
+                let taskResult = taskViewController.result
+                
+                print(taskResult)
+                
+                guard let stepResult = taskResult.result(forIdentifier: "notificationTime") as? ORKStepResult,
+                    let timeResult = stepResult.result(forIdentifier: "notificationTime") as? ORKTimeOfDayQuestionResult,
+                    let timeComponents = timeResult.dateComponentsAnswer else {
+                        self?.dismiss(animated: true, completion: nil)
+                        return
+                }
+                
+                AppDelegate.appDelegate.store.notificationTime = timeComponents
+                ANCNotificationManager.setNotifications()
+                ANCNotificationManager.printPendingNotifications()
+                
+                self?.dismiss(animated: true, completion: {
+                    self?.launchActivity()
+                })
+                
+                
+                
+            })
+            
+            self.present(tvc, animated: true, completion: nil)
+        }
 
         else {
-            ANCNotificationManager.setNotifications()
-            ANCNotificationManager.printPendingNotifications() 
+            AppDelegate.appDelegate.store.participantSince = Date()
             appDelegate.showViewController(animated: true)
         }
         

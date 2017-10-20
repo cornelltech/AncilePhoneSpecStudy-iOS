@@ -7,17 +7,19 @@ target 'AncilePhoneSpecStudy' do
 
   # Pods for AncilePhoneSpecStudy
   # Pods for RSuiteDemo
-  pod "OhmageOMHSDK", '~> 0.4'
-  pod "OhmageOMHSDK/RKSupport", '~> 0.4'
-  pod "OhmageOMHSDK/RSRPSupport", '~> 0.4'
-  pod "OhmageOMHSDK/RSTBSupport", '~> 0.4'
+  pod "OhmageOMHSDK", :path => '~/Developer/ResearchSuite/iOS/OhmageOMHSDK-ios'
+  pod "OhmageOMHSDK/RKSupport", :path => '~/Developer/ResearchSuite/iOS/OhmageOMHSDK-ios'
+  pod "OhmageOMHSDK/RSRPSupport", :path => '~/Developer/ResearchSuite/iOS/OhmageOMHSDK-ios'
+  pod "OhmageOMHSDK/RSTBSupport", :path => '~/Developer/ResearchSuite/iOS/OhmageOMHSDK-ios'
 
   pod "sdlrkx"
   # pod "sdlrkx", :path => '~/Developer/ResearchSuite/iOS/sdl-rkx'
-  pod "ResearchKit", '1.4.1'
-  # pod "ResearchSuiteTaskBuilder"
-  pod "ResearchSuiteTaskBuilder", '~> 0.7'
-  pod "ResearchSuiteResultsProcessor"
+  pod "ResearchKit", '~> 1.4'
+  pod "ResearchSuiteTaskBuilder"
+  # pod "ResearchSuiteTaskBuilder", '~> 0.7'
+  # pod "ResearchSuiteTaskBuilder", :path => '~/Developer/ResearchSuite/iOS/ResearchSuiteTaskBuilder-ios'
+  pod "ResearchSuiteResultsProcessor", :path => '~/Developer/ResearchSuite/iOS/ResearchSuiteResultsProcessor-ios'
+  # pod "ResearchSuiteResultsProcessor"
   pod "Alamofire", '~> 4'
   pod "ResearchSuiteAppFramework", :git => 'https://github.com/ResearchSuite/ResearchSuiteAppFramework-iOS.git', :tag => '0.0.3'
   # pod "ResearchSuiteExtensions", '~> 0.2'

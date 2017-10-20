@@ -20,7 +20,7 @@ class ANCHomeViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut))
+        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .done, target: self, action: #selector(signOut))
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,14 +44,14 @@ class ANCHomeViewController: UIViewController {
         
         if let lastLaunchTime = AppDelegate.appDelegate.store.lastSurveyLaunchTime {
             debugPrint("time interval \(lastLaunchTime.timeIntervalSinceNow)")
-            
+
             //note that timeIntervalSinceNow returns negative for dates in the past
             return -(lastLaunchTime.timeIntervalSinceNow) > minLaunchInterval
         }
         else {
             return true
         }
-        
+
     }
     
     func launchTask() {
