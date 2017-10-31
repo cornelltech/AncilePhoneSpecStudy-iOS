@@ -108,7 +108,9 @@ class ANCSettingsTableViewController: UITableViewController {
                             return
                     }
                     
-                    
+                    //note that the time components include Year, Month, Day set to 0
+                    //If we simply use this timeComponents object to set notifications,
+                    //the calendar trigger won't ever fire
                     AppDelegate.appDelegate.store.notificationTime = timeComponents
                     
                     self?.dismiss(animated: true, completion: {

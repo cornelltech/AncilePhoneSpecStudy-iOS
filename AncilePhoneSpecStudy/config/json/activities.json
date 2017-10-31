@@ -51,19 +51,22 @@
             "identifier": "ancileAuth",
             "type": "AncileAuth",
             "title": "Authenticate with Ancile",
-            "buttonText": "Authenticate"
+            "buttonText": "Authenticate",
+            "optional": false
           },
           {
             "identifier": "coreAuth",
             "type": "CoreAuth",
             "title": "Authenticate with Core",
-            "buttonText": "Authenticate"
+            "buttonText": "Authenticate",
+            "optional": false
           },
           {
             "identifier": "ohmageLogin",
             "type": "OhmageOMHRedirectLogin",
             "title": "Authenticate with Ohmage",
-            "buttonText": "Authenticate"
+            "buttonText": "Authenticate",
+            "optional": false
           },
           {
             "identifier": "securing_data_instructions",

@@ -38,6 +38,8 @@ class ANCHomeViewController: UIViewController {
         if self.shouldLaunchTask() {
             self.launchTask()
         }
+        
+        ANCNotificationManager.printPendingNotifications()
     }
     
     func shouldLaunchTask() -> Bool {
