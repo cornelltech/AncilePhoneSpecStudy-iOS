@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'AncilePhoneSpecStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -12,10 +12,10 @@ target 'AncilePhoneSpecStudy' do
   # pod "OhmageOMHSDK/RSRPSupport", :path => '~/Developer/ResearchSuite/iOS/OhmageOMHSDK-ios'
   # pod "OhmageOMHSDK/RSTBSupport", :path => '~/Developer/ResearchSuite/iOS/OhmageOMHSDK-ios'
 
-  pod "OhmageOMHSDK", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.0'
-  pod "OhmageOMHSDK/RKSupport", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.0'
-  pod "OhmageOMHSDK/RSRPSupport", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.0'
-  pod "OhmageOMHSDK/RSTBSupport", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.0'
+  pod "OhmageOMHSDK", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.2'
+  pod "OhmageOMHSDK/RKSupport", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.2'
+  pod "OhmageOMHSDK/RSRPSupport", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.2'
+  pod "OhmageOMHSDK/RSTBSupport", :git => 'https://github.com/ResearchSuite/OhmageOMHSDK-ios', :tag => '0.5.2'
 
   pod "sdlrkx"
   # pod "sdlrkx", :path => '~/Developer/ResearchSuite/iOS/sdl-rkx'
@@ -23,8 +23,8 @@ target 'AncilePhoneSpecStudy' do
   pod "ResearchSuiteTaskBuilder"
   # pod "ResearchSuiteTaskBuilder", '~> 0.7'
   # pod "ResearchSuiteTaskBuilder", :path => '~/Developer/ResearchSuite/iOS/ResearchSuiteTaskBuilder-ios'
-  # pod "ResearchSuiteResultsProcessor", :path => '~/Developer/ResearchSuite/iOS/ResearchSuiteResultsProcessor-ios'
-  pod "ResearchSuiteResultsProcessor", '~> 0.6'
+  pod "ResearchSuiteResultsProcessor", :path => '~/Developer/ResearchSuite/iOS/ResearchSuiteResultsProcessor-ios'
+  # pod "ResearchSuiteResultsProcessor", '~> 0.6'
   pod "Alamofire", '~> 4'
   pod "ResearchSuiteAppFramework", :git => 'https://github.com/ResearchSuite/ResearchSuiteAppFramework-iOS.git', :tag => '0.0.3'
   # pod "ResearchSuiteExtensions", '~> 0.2'
